@@ -12,6 +12,8 @@ public class Tile
 	public String improvement;
 	public int x;
 	public int y;
+	Terrain t; 
+	Biome b;
 	public Tile( int xLoc, int yLoc )
 	{
 		x = xLoc;
