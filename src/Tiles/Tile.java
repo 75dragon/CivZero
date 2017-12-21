@@ -1,6 +1,5 @@
 package Tiles;
 
-import CivZero.Yields;
 import Resources.Resource;
 
 public class Tile
