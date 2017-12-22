@@ -18,8 +18,8 @@ public class Yields
 	
 	public Yields(int f, int p)
 	{
-		theYields[0] = 0;
-		theYields[1] = 1;
+		theYields[0] = f;
+		theYields[1] = p;
 		for ( int i = 2; i < 5; i++ )
 		{
 			theYields[i] = 0;

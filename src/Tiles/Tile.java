@@ -1,14 +1,9 @@
 package Tiles;
 
-import Resources.Resource;
-
 public class Tile
 {
-	public Resource res;
+
 	public Yields yield;
-	public boolean worked;
-	public boolean improved;
-	public String improvement;
 	public int x;
 	public int y;
 	Terrain t; 
@@ -17,6 +12,7 @@ public class Tile
 	{
 		x = xLoc;
 		y = yLoc;
+		yield = new Yields(2,2);
 	}
 
 	

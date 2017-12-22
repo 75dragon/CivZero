@@ -2,7 +2,7 @@ package Tiles;
 
 public enum Terrain
 {
-	WATER(-1, 0), FLAT(0, 0), HILL(-1, 1), MOUNTAIN(-2, +2);
+	WATER(-1, -2), FLAT(-2, -2), HILL(-2, 0), MOUNTAIN(-2, -2);
 	private int foodMod;
 	private int productionMod;
 	
@@ -12,4 +12,23 @@ public enum Terrain
 		this.productionMod = productionMod;
 	}
 	
+	public int getFoodMod()
+	{
+		return foodMod;
+	}
+
+	public void setFoodMod(int foodMod)
+	{
+		this.foodMod = foodMod;
+	}
+
+	public int getProductionMod()
+	{
+		return productionMod;
+	}
+
+	public void setProductionMod(int productionMod)
+	{
+		this.productionMod = productionMod;
+	}
 }
