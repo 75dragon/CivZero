@@ -1,6 +1,7 @@
 package Gui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
@@ -11,9 +12,10 @@ public class GamePanel extends JPanel
 {
 	int[][] locations;
 	World w;
-	public GamePanel(World wo)
+	public GamePanel(World wo, int x, int y)
 	{
 		w = wo;
+		this.setPreferredSize(new Dimension(x,y));
 	}
 	
 	@Override
@@ -23,8 +25,7 @@ public class GamePanel extends JPanel
 		{
 			for (int j = 0; j < w.getyDim(); j++)
 			{
-				System.out.println(i + " " + j);
-				w.getTheWorlds()[i][j].drawMe(g);
+				w.getWorld()[i][j].drawMe(g);
 			}
 		}
 	}

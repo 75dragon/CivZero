@@ -35,21 +35,14 @@ public class Generate
 		col = x;
 		world = new String[x][y];
 		makeWorld(50, ".");
-		printWorld();
 		iterateWorld(".", 3, true);
-		printWorld();
 		addTerrain(20, "H", true);
-		printWorld();
 		iterateWorld("H", 3, false);
-		printWorld();
 		addTerrain(30, "P", true);
-		printWorld();
 		iterateWorld("P", 3, false);
-		printWorld();
 		fillTerrain("G");
-		printWorld();
 		firstConvert();
-		System.out.println(gameWorld[1][1].x);
+		System.out.println("Done generating");
 	}
 
 	public void firstConvert()
@@ -75,10 +68,8 @@ public class Generate
 				{
 					gameWorld[i][j] = new Tile(i, j, d, Terrain.FLAT, Biome.GRASSLAND);
 				}
-				System.out.println(gameWorld[i][j].x);
 			}
 		}
-		System.out.println(gameWorld[1][1].x);
 	}
 
 	public String[][] makeBlankWorld()

@@ -42,7 +42,7 @@ public class World
 		this.yDim = yDim;
 	}
 
-	public Tile[][] getTheWorlds()
+	public Tile[][] getWorld()
 	{
 		return theWorlds;
 	}

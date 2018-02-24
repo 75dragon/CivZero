@@ -12,8 +12,9 @@ public class Displayer
 	GamePanel gp;
 	public Displayer(int x, int y, int dim, World w)
 	{
-		gf = new GameFrame(x * dim,y * dim);
-		gp = new GamePanel(w);
+		gf = new GameFrame();
+		gp = new GamePanel(w, x * dim, y * dim);
 		gf.add(gp, BorderLayout.CENTER);
+		gf.pack();
 	}
 }

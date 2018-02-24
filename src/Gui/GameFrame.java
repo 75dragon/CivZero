@@ -6,10 +6,10 @@ import javax.swing.JFrame;
 
 public class GameFrame extends JFrame
 {
-	public GameFrame(int x, int y)
+	public GameFrame()
 	{
 		this.setVisible(true);
-		this.setSize(x, y);
+		//this.setSize(x, y);
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 	}

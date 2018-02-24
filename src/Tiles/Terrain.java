@@ -4,7 +4,7 @@ import java.awt.Color;
 
 public enum Terrain
 {
-	WATER(-1, -2, Color.BLUE), FLAT(0, -2, Color.GREEN), HILL(-2, 0, Color.GRAY), MOUNTAIN(-2, -2, Color.BLACK), PLAIN(-1,-1, Color.CYAN);
+	WATER(-1, -2, Color.BLUE), FLAT(0, -2, Color.GREEN), HILL(-2, 0, new Color(255, 255, 102)), MOUNTAIN(-2, -2, Color.GRAY), PLAIN(-1,-1, new Color(204, 255, 51));
 	private int foodMod;
 	private int productionMod;
 	private Color color;
@@ -14,7 +14,6 @@ public enum Terrain
 		this.color = color;
 		this.foodMod = foodMod;
 		this.productionMod = productionMod;
-		System.out.println("help");
 	}
 	
 	public int getFoodMod()
