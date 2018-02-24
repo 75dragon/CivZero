@@ -1,14 +1,55 @@
 package CivZero;
 
+import Map.Generate;
 import Tiles.Tile;
 
 public class World
 {
-	Tile[][] theWorlds;
+	private int xDim;
+	private int yDim;
+	int dim;
+	private Tile[][] theWorlds;
+	Generate gen;
+	Displayer Dis;
 	
-	World()
+	World(int x, int y, int dimention)
 	{
-		theWorlds = new Tile[10][10];
+		dim = dimention;
+		setxDim(x);
+		setyDim(y);
+		gen = new Generate(getxDim(), getyDim(), dimention);
+		setTheWorlds(gen.getGameWorld());
+		Dis = new Displayer(getxDim(), getyDim(), dimention, this);
+	}
+
+	public int getxDim()
+	{
+		return xDim;
+	}
+
+	public void setxDim(int xDim)
+	{
+		this.xDim = xDim;
+	}
+
+	public int getyDim()
+	{
+		return yDim;
+	}
+
+	public void setyDim(int yDim)
+	{
+		this.yDim = yDim;
+	}
+
+	public Tile[][] getTheWorlds()
+	{
+		return theWorlds;
+	}
+
+	public void setTheWorlds(Tile[][] theWorlds)
+	{
+		this.theWorlds = theWorlds;
 	}
 	
 }

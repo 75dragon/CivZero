@@ -6,8 +6,9 @@ public class Main
 {
 	Main()
 	{
-		Generate hold = new Generate(15, 15);
+		World world = new World(20, 20, 30);
 	}
+	
 	
 	public static void main( String args[] )
 	{
