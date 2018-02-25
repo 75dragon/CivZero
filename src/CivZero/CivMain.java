@@ -2,9 +2,9 @@ package CivZero;
 
 import Map.Generate;
 
-public class Main
+public class CivMain
 {
-	Main()
+	CivMain()
 	{
 		World world = new World(20, 20, 30);
 	}
@@ -12,6 +12,6 @@ public class Main
 	
 	public static void main( String args[] )
 	{
-		new Main();
+		new CivMain();
 	}
 }
