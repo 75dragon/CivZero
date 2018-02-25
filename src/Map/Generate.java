@@ -5,6 +5,8 @@ import java.util.Random;
 import Tiles.Biome;
 import Tiles.Terrain;
 import Tiles.Tile;
+import Resources.LuxuryResources;
+import Resources.Resources;
 
 public class Generate
 {
@@ -27,6 +29,7 @@ public class Generate
 	int jE = 0;
 
 	int d = 0;
+
 	public Generate(int x, int y, int dim)
 	{
 		d = dim;
@@ -36,11 +39,12 @@ public class Generate
 		world = new String[x][y];
 		makeWorld(50, ".");
 		iterateWorld(".", 3, true);
-		addTerrain(20, "H", true);
-		iterateWorld("H", 3, false);
-		addTerrain(30, "P", true);
-		iterateWorld("P", 3, false);
-		fillTerrain("G");
+		addTerrain(20, "Hills", true);
+		iterateWorld("Hills", 3, false);
+		addTerrain(30, "Plains", true);
+		iterateWorld("Plains", 3, false);
+		fillTerrain("Grassland");
+		finalTouch();
 		firstConvert();
 		System.out.println("Done generating");
 	}
@@ -56,17 +60,130 @@ public class Generate
 				{
 					gameWorld[i][j] = new Tile(i, j, d, Terrain.WATER, Biome.GRASSLAND);
 				}
-				else if (world[i][j] == "H")
+				else if (world[i][j].contains("Hills"))
 				{
-					gameWorld[i][j] = new Tile(i, j, d, Terrain.HILL, Biome.GRASSLAND);
+					if (world[i][j].contains("Wheat"))
+					{
+						gameWorld[i][j] = new Tile(i, j, d, Terrain.HILL, Biome.GRASSLAND, Resources.WHEAT);
+					}
+					else if (world[i][j].contains("Cattle"))
+					{
+						gameWorld[i][j] = new Tile(i, j, d, Terrain.HILL, Biome.GRASSLAND, Resources.CATTLE);
+					}
+					else if (world[i][j].contains("Horse"))
+					{
+						gameWorld[i][j] = new Tile(i, j, d, Terrain.HILL, Biome.GRASSLAND, Resources.HORSE);
+					}
+					else if (world[i][j].contains("Sheep"))
+					{
+						gameWorld[i][j] = new Tile(i, j, d, Terrain.HILL, Biome.GRASSLAND, Resources.SHEEP);
+					}
+					else if (world[i][j].contains("Citrus"))
+					{
+						gameWorld[i][j] = new Tile(i, j, d, Terrain.HILL, Biome.GRASSLAND, LuxuryResources.CITRUS);
+					}
+					else if (world[i][j].contains("Silver"))
+					{
+						gameWorld[i][j] = new Tile(i, j, d, Terrain.HILL, Biome.GRASSLAND, LuxuryResources.SILVER);
+					}
+					else if (world[i][j].contains("Gold"))
+					{
+						gameWorld[i][j] = new Tile(i, j, d, Terrain.HILL, Biome.GRASSLAND, LuxuryResources.GOLD);
+					}
+					else if (world[i][j].contains("Salt"))
+					{
+						gameWorld[i][j] = new Tile(i, j, d, Terrain.HILL, Biome.GRASSLAND, LuxuryResources.SALT);
+					}
+					else
+					{
+						gameWorld[i][j] = new Tile(i, j, d, Terrain.HILL, Biome.GRASSLAND);
+					}
 				}
-				else if (world[i][j] == "P")
+				else if (world[i][j].contains("Plains"))
 				{
-					gameWorld[i][j] = new Tile(i, j, d, Terrain.PLAIN, Biome.GRASSLAND);
+					if (world[i][j].contains("Wheat"))
+					{
+						gameWorld[i][j] = new Tile(i, j, d, Terrain.PLAIN, Biome.GRASSLAND, Resources.WHEAT);
+					}
+					else if (world[i][j].contains("Cattle"))
+					{
+						gameWorld[i][j] = new Tile(i, j, d, Terrain.PLAIN, Biome.GRASSLAND, Resources.CATTLE);
+					}
+					else if (world[i][j].contains("Horse"))
+					{
+						gameWorld[i][j] = new Tile(i, j, d, Terrain.PLAIN, Biome.GRASSLAND, Resources.HORSE);
+					}
+					else if (world[i][j].contains("Sheep"))
+					{
+						gameWorld[i][j] = new Tile(i, j, d, Terrain.PLAIN, Biome.GRASSLAND, Resources.SHEEP);
+					}
+					else if (world[i][j].contains("Citrus"))
+					{
+						gameWorld[i][j] = new Tile(i, j, d, Terrain.PLAIN, Biome.GRASSLAND, LuxuryResources.CITRUS);
+					}
+					else if (world[i][j].contains("Silver"))
+					{
+						gameWorld[i][j] = new Tile(i, j, d, Terrain.PLAIN, Biome.GRASSLAND, LuxuryResources.SILVER);
+					}
+					else if (world[i][j].contains("Gold"))
+					{
+						gameWorld[i][j] = new Tile(i, j, d, Terrain.PLAIN, Biome.GRASSLAND, LuxuryResources.GOLD);
+					}
+					else if (world[i][j].contains("Salt"))
+					{
+						gameWorld[i][j] = new Tile(i, j, d, Terrain.PLAIN, Biome.GRASSLAND, LuxuryResources.SALT);
+					}
+					else
+					{
+						gameWorld[i][j] = new Tile(i, j, d, Terrain.PLAIN, Biome.GRASSLAND);
+					}
 				}
-				else if (world[i][j] == "G")
+				else if (world[i][j].contains("Grassland"))
 				{
-					gameWorld[i][j] = new Tile(i, j, d, Terrain.FLAT, Biome.GRASSLAND);
+					if (world[i][j].contains("Wheat"))
+					{
+						gameWorld[i][j] = new Tile(i, j, d, Terrain.FLAT, Biome.GRASSLAND, Resources.WHEAT);
+					}
+					else if (world[i][j].contains("Cattle"))
+					{
+						gameWorld[i][j] = new Tile(i, j, d, Terrain.FLAT, Biome.GRASSLAND, Resources.CATTLE);
+					}
+					else if (world[i][j].contains("Horse"))
+					{
+						gameWorld[i][j] = new Tile(i, j, d, Terrain.FLAT, Biome.GRASSLAND, Resources.HORSE);
+					}
+					else if (world[i][j].contains("Sheep"))
+					{
+						gameWorld[i][j] = new Tile(i, j, d, Terrain.FLAT, Biome.GRASSLAND, Resources.SHEEP);
+					}
+					else if (world[i][j].contains("Citrus"))
+					{
+						gameWorld[i][j] = new Tile(i, j, d, Terrain.FLAT, Biome.GRASSLAND, LuxuryResources.CITRUS);
+					}
+					else if (world[i][j].contains("Silver"))
+					{
+						gameWorld[i][j] = new Tile(i, j, d, Terrain.FLAT, Biome.GRASSLAND, LuxuryResources.SILVER);
+					}
+					else if (world[i][j].contains("Gold"))
+					{
+						gameWorld[i][j] = new Tile(i, j, d, Terrain.FLAT, Biome.GRASSLAND, LuxuryResources.GOLD);
+					}
+					else if (world[i][j].contains("Salt"))
+					{
+						gameWorld[i][j] = new Tile(i, j, d, Terrain.FLAT, Biome.GRASSLAND, LuxuryResources.SALT);
+					}
+					else
+					{
+						gameWorld[i][j] = new Tile(i, j, d, Terrain.FLAT, Biome.GRASSLAND);
+					}
+				}
+				else if (world[i][j].contains("Mountains"))
+				{
+					gameWorld[i][j] = new Tile(i, j, d, Terrain.MOUNTAIN, Biome.GRASSLAND);
+				}
+				else
+				{
+					System.out.println("FAIL: " + world[i][j]);
 				}
 			}
 		}
@@ -95,7 +212,8 @@ public class Generate
 				if (rand.nextInt(99) + 1 <= percent)
 				{
 					world[i][j] = type;
-				} else
+				}
+				else
 				{
 					world[i][j] = " ";
 				}
@@ -116,9 +234,10 @@ public class Generate
 					{
 						world[i][j] = type;
 					}
-				} else
+				}
+				else
 				{
-					if (rand.nextInt(99) + 1 <= percent && world[i][j] == "#")
+					if (rand.nextInt(99) + 1 <= percent && world[i][j] == ".")
 					{
 						world[i][j] = type;
 					}
@@ -174,17 +293,12 @@ public class Generate
 		{
 			for (int j = 0; j < col; j++)
 			{
-				// numbers[i][j] = getWall( i + 1, j + 1, type ) + getWall( i +
-				// 1, j, type ) + getWall( i + 1, j - 1, type )
-				// + getWall( i, j + 1, type ) + getWall( i, j, type ) +
-				// getWall( i, j - 1, type ) + getWall( i - 1, j + 1, type )
-				// + getWall( i - 1, j, type ) + getWall( i - 1, j - 1, type );
 				if (j % 2 == 0)
 				{
 					numbers[i][j] = getWall(i - 1, j + 1, type) + getWall(i + 1, j, type) + getWall(i, j + 1, type)
 							+ getWall(i, j, type) + getWall(i, j - 1, type) + getWall(i - 1, j, type)
 							+ getWall(i - 1, j - 1, type);
-				} 
+				}
 				else
 				{
 					numbers[i][j] = getWall(i + 1, j + 1, type) + getWall(i + 1, j, type) + getWall(i, j + 1, type)
@@ -201,7 +315,8 @@ public class Generate
 				if (numbers[i][j] > threshold)
 				{
 					world[i][j] = type;
-				} else
+				}
+				else
 				{
 					if (revert)
 					{
@@ -218,35 +333,43 @@ public class Generate
 		{
 			for (int j = 0; j < col; j++)
 			{
-				if (world[i][j].equals("M"))
+				if (!world[i][j].equals("."))
 				{
-					if (rand.nextInt(20) == 0)
+					if (rand.nextInt(50) == 0)
 					{
-						world[i][j] = "";
-					} else if (rand.nextInt(10) == 0)
-					{
-						world[i][j] = "S";
+						world[i][j] = "Mountains";
 					}
-				} else if (world[i][j].equals(" "))
-				{
-					if (rand.nextInt(20) == 0)
+					else if (rand.nextInt(40) == 0)
 					{
-						world[i][j] = "g";
-					} else if (rand.nextInt(50) == 0)
+						world[i][j] = world[i][j] + "Wheat";
+					}
+					else if (rand.nextInt(40) == 0)
 					{
-						world[i][j] = "T";
-					} else if (rand.nextInt(40) == 0)
+						world[i][j] = world[i][j] + "Cattle";
+					}
+					else if (rand.nextInt(40) == 0)
 					{
-						world[i][j] = "t";
-					} else if (rand.nextInt(100) == 0)
+						world[i][j] = world[i][j] + "Horse";
+					}
+					else if (rand.nextInt(40) == 0)
 					{
-						world[i][j] = "B";
-					} else if (rand.nextInt(200) == 0)
+						world[i][j] = world[i][j] + "Sheep";
+					} // lux
+					else if (rand.nextInt(40) == 0)
 					{
-						world[i][j] = "H";
-					} else if (rand.nextInt(500) == 0)
+						world[i][j] = world[i][j] + "Silver";
+					}
+					else if (rand.nextInt(40) == 0)
 					{
-						world[i][j] = "W";
+						world[i][j] = world[i][j] + "Gold";
+					}
+					else if (rand.nextInt(40) == 0)
+					{
+						world[i][j] = world[i][j] + "Salt";
+					}
+					else if (rand.nextInt(40) == 0)
+					{
+						world[i][j] = world[i][j] + "Citrus";
 					}
 				}
 			}

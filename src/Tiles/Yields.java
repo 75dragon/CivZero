@@ -26,6 +26,17 @@ public class Yields
 		}
 	}
 	
+	public Yields(int f, int p, int g)
+	{
+		theYields[0] = f;
+		theYields[1] = p;
+		theYields[2] = g;
+		for ( int i = 3; i < 5; i++ )
+		{
+			theYields[i] = 0;
+		}
+	}
+	
 	public void changeFood( int amount )
 	{
 		theYields[0] = theYields[0] + amount;

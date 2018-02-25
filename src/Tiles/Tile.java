@@ -2,7 +2,10 @@ package Tiles;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
+
+import Resources.Resources;
+
+import Resources.LuxuryResources;
 
 public class Tile
 {
@@ -12,6 +15,8 @@ public class Tile
 	public int y;
 	Terrain t; 
 	Biome b;
+	LuxuryResources lr;
+	Resources r;
 	Color color;
 	int width;
 	public Tile( int xLoc, int yLoc, int w, Terrain te, Biome bo )
@@ -19,6 +24,28 @@ public class Tile
 		width = w;
 		t = te;
 		b = bo;
+		x = xLoc;
+		y = yLoc;
+		yield = new Yields(2,2);
+	}
+	
+	public Tile( int xLoc, int yLoc, int w, Terrain te, Biome bo, LuxuryResources lu )
+	{
+		width = w;
+		t = te;
+		b = bo;
+		lr = lu;
+		x = xLoc;
+		y = yLoc;
+		yield = new Yields(2,2);
+	}
+	
+	public Tile( int xLoc, int yLoc, int w, Terrain te, Biome bo, Resources re )
+	{
+		width = w;
+		t = te;
+		b = bo;
+		r = re;
 		x = xLoc;
 		y = yLoc;
 		yield = new Yields(2,2);
