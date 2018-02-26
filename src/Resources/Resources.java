@@ -16,7 +16,6 @@ public enum Resources implements YieldModifier
 	@Override
 	public Yields getModifiers()
 	{
-		// TODO Auto-generated method stub
 		return y;
 	}
 }

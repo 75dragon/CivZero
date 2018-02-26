@@ -41,7 +41,7 @@ public class Yields
 	{
 		theYields[0] = theYields[0] + amount;
 	}
-	
+
 	public void changeProduction( int amount )
 	{
 		theYields[1] = theYields[1] + amount;
@@ -62,6 +62,37 @@ public class Yields
 		theYields[4] = theYields[4] + amount;
 	}
 	
+	public int getFood()
+	{
+		return theYields[0];
+	}
+	
+	public int getProduction()
+	{
+		return theYields[1];
+	}
+	
+	public int getGold()
+	{
+		return theYields[2];
+	}
+	
+	public int getScience()
+	{
+		return theYields[3];
+	}
+	
+	public int getCulture()
+	{
+		return theYields[4];
+	}
+	public void addTo(Yields y)
+	{
+		for (int i = 0; i < 5; i++)
+		{
+			theYields[i] += y.getYields()[i];
+		}
+	}
 	public int[] getYields()
 	{
 		return theYields;

@@ -30,6 +30,8 @@ public class Generate
 
 	int d = 0;
 
+	String water = ".";
+	
 	public Generate(int x, int y, int dim)
 	{
 		d = dim;
@@ -37,8 +39,16 @@ public class Generate
 		row = y;
 		col = x;
 		world = new String[x][y];
-		makeWorld(50, ".");
-		iterateWorld(".", 3, true);
+		makeBlankWorld();
+		makeWorld(100, water);
+		makeWorld(35, " ");
+		printWorld();
+		iterateWorld(" ", 3, false);
+		iterateWorld(" ", 4, false);
+		iterateWorld(" ", 5, false);
+		iterateWorld(" ", 6, false);
+		iterateWorld(" ", 7, false);
+		printWorld();
 		addTerrain(20, "Hills", true);
 		iterateWorld("Hills", 3, false);
 		addTerrain(30, "Plains", true);
@@ -56,7 +66,8 @@ public class Generate
 		{
 			for (int j = 0; j < col; j++)
 			{
-				if (world[i][j] == ".")
+				System.out.println(world[i][j]);
+				if (world[i][j] == water)
 				{
 					gameWorld[i][j] = new Tile(i, j, d, Terrain.WATER, Biome.GRASSLAND);
 				}
@@ -189,22 +200,27 @@ public class Generate
 		}
 	}
 
-	public String[][] makeBlankWorld()
+	/**
+	 * Fills the world with " "
+	 */
+	public void makeBlankWorld()
 	{
-		String[][] temp = new String[row][col];
 		for (int i = 0; i < row; i++)
 		{
 			for (int j = 0; j < col; j++)
 			{
-				temp[i][j] = " ";
+				world[i][j] = " ";
 			}
 		}
-		return temp;
 	}
 
-	public String[][] makeWorld(int percent, String type)
+	/**
+	 * has a % chance for each tile to become type
+	 * @param percent
+	 * @param type
+	 */
+	public void makeWorld(int percent, String type)
 	{
-		String[][] temp = new String[row][col];
 		for (int i = 0; i < row; i++)
 		{
 			for (int j = 0; j < col; j++)
@@ -213,13 +229,8 @@ public class Generate
 				{
 					world[i][j] = type;
 				}
-				else
-				{
-					world[i][j] = " ";
-				}
 			}
 		}
-		return temp;
 	}
 
 	public void addTerrain(int percent, String type, boolean land)
@@ -237,7 +248,7 @@ public class Generate
 				}
 				else
 				{
-					if (rand.nextInt(99) + 1 <= percent && world[i][j] == ".")
+					if (rand.nextInt(99) + 1 <= percent && world[i][j] == water)
 					{
 						world[i][j] = type;
 					}
@@ -333,7 +344,8 @@ public class Generate
 		{
 			for (int j = 0; j < col; j++)
 			{
-				if (!world[i][j].equals("."))
+				System.out.println(world[i][j]);
+				if (!world[i][j].equals(water))
 				{
 					if (rand.nextInt(50) == 0)
 					{
