@@ -2,6 +2,7 @@ package Tiles;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import Resources.Resources;
 
@@ -17,6 +18,7 @@ public class Tile
 	Biome b;
 	LuxuryResources lr;
 	Resources r;
+	ArrayList<YieldModifier> ym;
 	Color color;
 	int width;
 	public Tile( int xLoc, int yLoc, int w, Terrain te, Biome bo )
@@ -27,6 +29,8 @@ public class Tile
 		x = xLoc;
 		y = yLoc;
 		yield = new Yields(2,2);
+		ym = new ArrayList<YieldModifier>();
+		ym.add(te);
 	}
 	
 	public Tile( int xLoc, int yLoc, int w, Terrain te, Biome bo, LuxuryResources lu )
@@ -38,6 +42,9 @@ public class Tile
 		x = xLoc;
 		y = yLoc;
 		yield = new Yields(2,2);
+		ym = new ArrayList<YieldModifier>();
+		ym.add(te);
+		ym.add(lu);
 	}
 	
 	public Tile( int xLoc, int yLoc, int w, Terrain te, Biome bo, Resources re )
@@ -49,6 +56,9 @@ public class Tile
 		x = xLoc;
 		y = yLoc;
 		yield = new Yields(2,2);
+		ym = new ArrayList<YieldModifier>();
+		ym.add(te);
+		ym.add(re);
 	}
 	
 	public void drawMe(Graphics g)

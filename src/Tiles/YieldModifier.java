@@ -1,6 +1,6 @@
 package Tiles;
 
-public interface YeildModifier
+public interface YieldModifier
 {
 	public Yields getModifiers();
 }

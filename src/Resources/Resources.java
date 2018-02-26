@@ -1,9 +1,9 @@
 package Resources;
 
-import Tiles.YeildModifier;
+import Tiles.YieldModifier;
 import Tiles.Yields;
 
-public enum Resources implements YeildModifier
+public enum Resources implements YieldModifier
 {
 	WHEAT(1, 0), CATTLE(1, 0), HORSE(0, 1), SHEEP(0, 1);
 	Yields y;

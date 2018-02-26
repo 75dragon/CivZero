@@ -1,9 +1,9 @@
 package Resources;
 
-import Tiles.YeildModifier;
+import Tiles.YieldModifier;
 import Tiles.Yields;
 
-public enum LuxuryResources implements YeildModifier
+public enum LuxuryResources implements YieldModifier
 {
 	SILVER(0,0,2), GOLD(0,0,2), SALT(1,1,0), CITRUS(1,1,0);
 	Yields y;
