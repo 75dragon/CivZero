@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import Gui.Drawable;
 import Resources.Resources;
 
 import Resources.LuxuryResources;
@@ -25,6 +26,7 @@ public class Tile
 
 	/**
 	 * Plain tile constructor
+	 * 
 	 * @param xLoc
 	 * @param yLoc
 	 * @param pixelWidth
@@ -46,6 +48,7 @@ public class Tile
 
 	/**
 	 * Tile constructor, with Lux resource
+	 * 
 	 * @param xLoc
 	 * @param yLoc
 	 * @param pixelWidth
@@ -70,6 +73,7 @@ public class Tile
 
 	/**
 	 * Tile constructor, with resource
+	 * 
 	 * @param xLoc
 	 * @param yLoc
 	 * @param pixelWidth
@@ -93,7 +97,8 @@ public class Tile
 	}
 
 	/**
-	 * update the yields on the tile. Call after changing the YeildModifier array list.
+	 * update the yields on the tile. Call after changing the YeildModifier
+	 * array list.
 	 */
 	public void updateYeilds()
 	{
@@ -105,7 +110,9 @@ public class Tile
 
 	/**
 	 * draws the tile in the graphics object
-	 * @param g Graphics
+	 * 
+	 * @param g
+	 *            Graphics
 	 */
 	public void drawMe(Graphics g)
 	{
@@ -130,6 +137,13 @@ public class Tile
 			}
 			g.setColor(Color.black);
 			g.drawRect(x * width, y * width, width, width);
+			for (int i = 0; i < ym.size(); i++)
+			{
+				if (ym.get(i) instanceof Drawable)
+				{
+					((Drawable) ym.get(i)).drawMe(x * width, y * width, width, g);
+				}
+			}
 		}
 		else
 		{
@@ -150,7 +164,14 @@ public class Tile
 				g.fillOval(x * width + (int) (width * .5) + i * 7, y * width + 14, 5, 5);
 			}
 			g.setColor(Color.black);
-			g.drawRect(x * width + (int)(.5 * width), y * width, width, width);
+			g.drawRect(x * width + (int) (.5 * width), y * width, width, width);
+			for (int i = 0; i < ym.size(); i++)
+			{
+				if (ym.get(i) instanceof Drawable)
+				{
+					((Drawable) ym.get(i)).drawMe(x * width + (int) (.5 * width), y * width, width, g);
+				}
+			}
 		}
 	}
 

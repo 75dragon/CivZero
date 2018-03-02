@@ -8,6 +8,8 @@ import CivZero.World;
 public class MapListener implements MouseListener
 {
 	World w;
+	int xOnPress;
+	int yOnPress;
 	public MapListener( World wo )
 	{
 		w = wo;
@@ -33,13 +35,18 @@ public class MapListener implements MouseListener
 	@Override
 	public void mousePressed(MouseEvent arg0)
 	{
-		
+		xOnPress = arg0.getX();
+		yOnPress = arg0.getY();
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent arg0)
 	{
-		
+		w.getDisplayer().getGamepanel().setXTranslate(xOnPress - arg0.getX() + w.getDisplayer().getGamepanel().getXTranslate());
+		w.getDisplayer().getGamepanel().setYTranslate(yOnPress - arg0.getY() + w.getDisplayer().getGamepanel().getYTranslate());
+		xOnPress = 0;
+		yOnPress = 0;
+		w.getDisplayer().getGamepanel().repaint();
 	}
 
 }

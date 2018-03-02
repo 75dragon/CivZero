@@ -1,5 +1,6 @@
 package CivZero;
 
+import Gui.Displayer;
 import Map.Generate;
 import Tiles.Tile;
 
@@ -66,6 +67,11 @@ public class World
 	public void setTheWorlds(Tile[][] theWorlds)
 	{
 		this.theWorlds = theWorlds;
+	}
+	
+	public Displayer getDisplayer()
+	{
+		return Dis;
 	}
 	
 }

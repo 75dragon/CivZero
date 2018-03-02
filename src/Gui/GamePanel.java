@@ -12,15 +12,46 @@ public class GamePanel extends JPanel
 {
 	int[][] locations;
 	World w;
+	int xTranslate;
+	int yTranslate;
+	int xDim;
+	int yDim;
 	public GamePanel(World wo, int x, int y)
 	{
+		xDim = x;
+		yDim = y;
 		w = wo;
+		xTranslate = 0;
+		yTranslate = 0;
 		this.setPreferredSize(new Dimension(x,y));
+	}
+	
+	public void setXTranslate(int x)
+	{
+		xTranslate = x;
+	}
+	
+	public void setYTranslate(int y)
+	{
+		yTranslate = y;
+	}
+	
+	public int getXTranslate()
+	{
+		return xTranslate;
+	}
+	
+	public int getYTranslate()
+	{
+		return yTranslate;
 	}
 	
 	@Override
 	public void paint(Graphics g)
 	{
+		super.paintComponent(g);
+		g.clearRect(-xDim, -yDim, 3*xDim, 3*yDim);
+		g.translate(-xTranslate, -yTranslate);
 		for (int i = 0; i < w.getxDim(); i++)
 		{
 			for (int j = 0; j < w.getyDim(); j++)

@@ -11,5 +11,6 @@ public class GameFrame extends JFrame
 		this.setVisible(true);
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 	}
 }
