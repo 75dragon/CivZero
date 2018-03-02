@@ -31,7 +31,7 @@ public class Generate
 	int d = 0;
 
 	String water = ".";
-	
+
 	public Generate(int x, int y, int dim)
 	{
 		d = dim;
@@ -40,15 +40,11 @@ public class Generate
 		col = x;
 		world = new String[x][y];
 		makeBlankWorld();
-		makeWorld(100, water);
-		makeWorld(35, " ");
-		printWorld();
-		iterateWorld(" ", 3, false);
-		iterateWorld(" ", 4, false);
-		iterateWorld(" ", 5, false);
-		iterateWorld(" ", 6, false);
-		iterateWorld(" ", 7, false);
-		printWorld();
+		makeWorld(55, water);
+		for (int i = 0; i < 3; i++)
+		{
+			iterateWorld(" ", 3, true);
+		}
 		addTerrain(20, "Hills", true);
 		iterateWorld("Hills", 3, false);
 		addTerrain(30, "Plains", true);
@@ -66,7 +62,6 @@ public class Generate
 		{
 			for (int j = 0; j < col; j++)
 			{
-				System.out.println(world[i][j]);
 				if (world[i][j] == water)
 				{
 					gameWorld[i][j] = new Tile(i, j, d, Terrain.WATER, Biome.GRASSLAND);
@@ -216,6 +211,7 @@ public class Generate
 
 	/**
 	 * has a % chance for each tile to become type
+	 * 
 	 * @param percent
 	 * @param type
 	 */
@@ -331,7 +327,7 @@ public class Generate
 				{
 					if (revert)
 					{
-						world[i][j] = " ";
+						world[i][j] = water;
 					}
 				}
 			}
@@ -344,7 +340,6 @@ public class Generate
 		{
 			for (int j = 0; j < col; j++)
 			{
-				System.out.println(world[i][j]);
 				if (!world[i][j].equals(water))
 				{
 					if (rand.nextInt(50) == 0)

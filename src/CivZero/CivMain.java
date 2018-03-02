@@ -6,7 +6,7 @@ public class CivMain
 {
 	CivMain()
 	{
-		World world = new World(20, 20, 40);
+		World world = new World(20, 20, 100);
 	}
 	
 	

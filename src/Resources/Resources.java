@@ -7,10 +7,10 @@ public enum Resources implements YieldModifier
 {
 	WHEAT(1, 0), CATTLE(1, 0), HORSE(0, 1), SHEEP(0, 1);
 	Yields y;
-
-	private Resources(int f, int p)
+	String name;
+	private Resources(int foodMod, int prodMod)
 	{
-		y = new Yields(f, p);
+		y = new Yields(foodMod, prodMod);
 	}
 
 	@Override

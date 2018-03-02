@@ -22,11 +22,19 @@ public class World
 		Dis = new Displayer(getxDim(), getyDim(), dimention, this);
 	}
 
+	/**
+	 * gets the numbers of tiles in the X demension
+	 * @return int
+	 */
 	public int getxDim()
 	{
 		return xDim;
 	}
 
+	/**
+	 * set the number of tiles in the Y direction
+	 * @param xDim int
+	 */
 	public void setxDim(int xDim)
 	{
 		this.xDim = xDim;
@@ -42,11 +50,19 @@ public class World
 		this.yDim = yDim;
 	}
 
+	/**
+	 * return the giant array of tiles
+	 * @return a tile[][]
+	 */
 	public Tile[][] getWorld()
 	{
 		return theWorlds;
 	}
 
+	/**
+	 * set the world
+	 * @param theWorlds tile[][]
+	 */
 	public void setTheWorlds(Tile[][] theWorlds)
 	{
 		this.theWorlds = theWorlds;
