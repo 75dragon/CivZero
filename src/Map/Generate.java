@@ -51,11 +51,15 @@ public class Generate
 		iterateWorld("Plains", 3, false);
 		fillTerrain("Grassland");
 		finalTouch();
-		firstConvert();
+		ConvertStringtoTile();
 		System.out.println("Done generating");
 	}
 
-	public void firstConvert()
+	/**
+	 * converts the string array to a tile array call this last, gameWorld
+	 * should be ready to use afterwards
+	 */
+	public void ConvertStringtoTile()
 	{
 		gameWorld = new Tile[row][col];
 		for (int i = 0; i < row; i++)
@@ -229,6 +233,16 @@ public class Generate
 		}
 	}
 
+	/**
+	 * Adds terrain based off a percentage
+	 * 
+	 * @param percent
+	 *            int % threshold to have (0-100)
+	 * @param type
+	 *            String
+	 * @param land
+	 *            if it should be a land or water type
+	 */
 	public void addTerrain(int percent, String type, boolean land)
 	{
 		for (int i = 0; i < row; i++)
@@ -253,6 +267,12 @@ public class Generate
 		}
 	}
 
+	/**
+	 * fills the empty " " tiles with type
+	 * 
+	 * @param type
+	 *            String
+	 */
 	public void fillTerrain(String type)
 	{
 		for (int i = 0; i < row; i++)
@@ -267,6 +287,9 @@ public class Generate
 		}
 	}
 
+	/**
+	 * Prints the world. Debugging reasons
+	 */
 	void printWorld()
 	{
 		System.out.println();
@@ -334,6 +357,9 @@ public class Generate
 		}
 	}
 
+	/**
+	 * Currently randomly adds the Resources and LuxeryResources
+	 */
 	void finalTouch()
 	{
 		for (int i = 0; i < row; i++)
@@ -383,6 +409,13 @@ public class Generate
 		}
 	}
 
+	/**
+	 * returns if x,y is type
+	 * @param y int
+	 * @param x int
+	 * @param type String
+	 * @return 1 if yes, 0 if no
+	 */
 	int getWall(int y, int x, String type)
 	{
 		if (x >= col)
@@ -408,18 +441,12 @@ public class Generate
 		return 0;
 	}
 
-	public int distance(int x, int y)
-	{
-		return Math.abs(x - y);
-	}
-
+	/**
+	 * Get the game world
+	 * @return Tile[][]
+	 */
 	public Tile[][] getGameWorld()
 	{
 		return gameWorld;
-	}
-
-	public void setGameWorld(Tile[][] gameWorld)
-	{
-		this.gameWorld = gameWorld;
 	}
 }
