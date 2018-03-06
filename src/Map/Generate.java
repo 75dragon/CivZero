@@ -21,7 +21,14 @@ public class Generate
 	int[][] numbers;
 
 	int col, row;
-
+	
+	private static final int MOUNTAINSPAWNCHANCE = 50;
+	private static final int RESOURCESPAWNCHANCE = 30;
+	private static final int LUXURYRESOURCESPAWNCHANCE = 35;
+	private static final int WATERPERCENTAGE = 52;
+	private static final int HILLPERCENTAGE = 23;
+	private static final int PLAINPERCENTAGE = 23;
+	
 	Random rand;
 
 	int iE = 0;
@@ -40,14 +47,14 @@ public class Generate
 		col = x;
 		world = new String[x][y];
 		makeBlankWorld();
-		makeWorld(55, water);
+		makeWorld(WATERPERCENTAGE, water);
 		for (int i = 0; i < 3; i++)
 		{
 			iterateWorld(" ", 3, true);
 		}
-		addTerrain(20, "Hills", true);
+		addTerrain(HILLPERCENTAGE, "Hills", true);
 		iterateWorld("Hills", 3, false);
-		addTerrain(30, "Plains", true);
+		addTerrain(PLAINPERCENTAGE, "Plains", true);
 		iterateWorld("Plains", 3, false);
 		fillTerrain("Grassland");
 		finalTouch();
@@ -368,39 +375,39 @@ public class Generate
 			{
 				if (!world[i][j].equals(water))
 				{
-					if (rand.nextInt(50) == 0)
+					if (rand.nextInt(MOUNTAINSPAWNCHANCE) == 0)
 					{
 						world[i][j] = "Mountains";
 					}
-					else if (rand.nextInt(40) == 0)
+					else if (rand.nextInt(RESOURCESPAWNCHANCE) == 0)
 					{
 						world[i][j] = world[i][j] + "Wheat";
 					}
-					else if (rand.nextInt(40) == 0)
+					else if (rand.nextInt(RESOURCESPAWNCHANCE) == 0)
 					{
 						world[i][j] = world[i][j] + "Cattle";
 					}
-					else if (rand.nextInt(40) == 0)
+					else if (rand.nextInt(RESOURCESPAWNCHANCE) == 0)
 					{
 						world[i][j] = world[i][j] + "Horse";
 					}
-					else if (rand.nextInt(40) == 0)
+					else if (rand.nextInt(RESOURCESPAWNCHANCE) == 0)
 					{
 						world[i][j] = world[i][j] + "Sheep";
 					} // lux
-					else if (rand.nextInt(40) == 0)
+					else if (rand.nextInt(LUXURYRESOURCESPAWNCHANCE) == 0)
 					{
 						world[i][j] = world[i][j] + "Silver";
 					}
-					else if (rand.nextInt(40) == 0)
+					else if (rand.nextInt(LUXURYRESOURCESPAWNCHANCE) == 0)
 					{
 						world[i][j] = world[i][j] + "Gold";
 					}
-					else if (rand.nextInt(40) == 0)
+					else if (rand.nextInt(LUXURYRESOURCESPAWNCHANCE) == 0)
 					{
 						world[i][j] = world[i][j] + "Salt";
 					}
-					else if (rand.nextInt(40) == 0)
+					else if (rand.nextInt(LUXURYRESOURCESPAWNCHANCE) == 0)
 					{
 						world[i][j] = world[i][j] + "Citrus";
 					}
