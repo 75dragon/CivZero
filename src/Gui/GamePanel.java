@@ -28,11 +28,27 @@ public class GamePanel extends JPanel
 	
 	public void setXTranslate(int x)
 	{
+		if ( x < 0)
+		{
+			x = 0;
+		}
+		if ( x > xDim -this.getWidth())
+		{
+			x = xDim - this.getWidth();
+		}
 		xTranslate = x;
 	}
 	
 	public void setYTranslate(int y)
 	{
+		if ( y < 0)
+		{
+			y = 0;
+		}
+		if ( y > yDim - this.getHeight())
+		{
+			y = yDim - this.getHeight();
+		}
 		yTranslate = y;
 	}
 	

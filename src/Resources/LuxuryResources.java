@@ -28,7 +28,7 @@ public enum LuxuryResources implements YieldModifier, Drawable
 		y = new Yields(foodMod, prodMod, goldMod);
 		this.name= name;
 		loadImg(pic);
-		img = scale(img,100,100);
+		img = scale(img,30,30);
 	}
 	
 	public void loadImg(String pic)

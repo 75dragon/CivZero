@@ -123,17 +123,17 @@ public class Tile
 			for (int i = 0; i < yield.getFood(); i++)
 			{
 				g.setColor(Color.RED);
-				g.fillOval(x * width + i * 7, y * width, 5, 5);
+				g.fillOval(x * width + i * 7 + (int) (width * .5), y * width + (int) (width * .5), 5, 5);
 			}
 			for (int i = 0; i < yield.getProduction(); i++)
 			{
 				g.setColor(Color.PINK);
-				g.fillOval(x * width + i * 7, y * width + 7, 5, 5);
+				g.fillOval(x * width + i * 7 + (int) (width * .5), y * width + 7 + (int) (width * .5), 5, 5);
 			}
 			for (int i = 0; i < yield.getGold(); i++)
 			{
 				g.setColor(gold);
-				g.fillOval(x * width + i * 7, y * width + 14, 5, 5);
+				g.fillOval(x * width + i * 7 + (int) (width * .5), y * width + 14 + (int) (width * .5), 5, 5);
 			}
 			g.setColor(Color.black);
 			g.drawRect(x * width, y * width, width, width);
@@ -151,17 +151,17 @@ public class Tile
 			for (int i = 0; i < yield.getFood(); i++)
 			{
 				g.setColor(Color.RED);
-				g.fillOval(x * width + (int) (width * .5) + i * 7, y * width, 5, 5);
+				g.fillOval((x + 1) * width + i * 7, y * width + (int) (width * .5), 5, 5);
 			}
 			for (int i = 0; i < yield.getProduction(); i++)
 			{
 				g.setColor(Color.PINK);
-				g.fillOval(x * width + (int) (width * .5) + i * 7, y * width + 7, 5, 5);
+				g.fillOval((x + 1) * width + i * 7, y * width + (int) (width * .5) + 7, 5, 5);
 			}
 			for (int i = 0; i < yield.getGold(); i++)
 			{
 				g.setColor(gold);
-				g.fillOval(x * width + (int) (width * .5) + i * 7, y * width + 14, 5, 5);
+				g.fillOval((x + 1) * width + i * 7, y * width + 14 + (int) (width * .5), 5, 5);
 			}
 			g.setColor(Color.black);
 			g.drawRect(x * width + (int) (.5 * width), y * width, width, width);
