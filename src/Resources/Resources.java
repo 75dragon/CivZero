@@ -16,6 +16,12 @@ public enum Resources implements YieldModifier, Drawable
 	Yields y;
 	String name;
 	BufferedImage img;
+	/**
+	 * Creates a resource
+	 * @param foodMod
+	 * @param prodMod
+	 * @param name
+	 */
 	private Resources(int foodMod, int prodMod, String name, String pic)
 	{
 		this.name = name;
@@ -24,6 +30,10 @@ public enum Resources implements YieldModifier, Drawable
 		img = scale(img,30,30);
 	}
 	
+	/**
+	 * Loads the image for the resource
+	 * @param pic string location
+	 */
 	public void loadImg(String pic)
 	{
 		try
@@ -36,6 +46,13 @@ public enum Resources implements YieldModifier, Drawable
 		}
 	}
 	
+	/**
+	 * Scales the image to the given size
+	 * @param src the image
+	 * @param w width
+	 * @param h height
+	 * @return the scaled image
+	 */
 	public static BufferedImage scale(BufferedImage src, int w, int h)
 	{
 	    BufferedImage img = 

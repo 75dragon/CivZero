@@ -31,6 +31,10 @@ public enum LuxuryResources implements YieldModifier, Drawable
 		img = scale(img,30,30);
 	}
 	
+	/**
+	 * Loads the image for the resource
+	 * @param pic string location
+	 */
 	public void loadImg(String pic)
 	{
 		try
@@ -43,6 +47,13 @@ public enum LuxuryResources implements YieldModifier, Drawable
 		}
 	}
 	
+	/**
+	 * Scales the image to the given size
+	 * @param src the image
+	 * @param w width
+	 * @param h height
+	 * @return the scaled image
+	 */
 	public static BufferedImage scale(BufferedImage src, int w, int h)
 	{
 	    BufferedImage img = 
