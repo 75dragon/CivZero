@@ -12,7 +12,7 @@ public enum Terrain implements YieldModifier
 	private Terrain(int foodMod, int productionMod, Color color)
 	{
 		this.color = color;
-		y = new Yields(foodMod, productionMod);
+		y = new Yields(foodMod, productionMod,0,0,0);
 	}
 
 	public Color getCol()

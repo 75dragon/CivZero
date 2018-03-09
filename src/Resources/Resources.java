@@ -25,7 +25,7 @@ public enum Resources implements YieldModifier, Drawable
 	private Resources(int foodMod, int prodMod, String name, String pic)
 	{
 		this.name = name;
-		y = new Yields(foodMod, prodMod);
+		y = new Yields(foodMod, prodMod,0,0,0);
 		loadImg(pic);
 		img = scale(img,30,30);
 	}

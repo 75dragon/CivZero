@@ -61,15 +61,8 @@ public class Tile
 	 */
 	public Tile(int xLoc, int yLoc, int pixelWidth, Terrain terrain, Biome biome, LuxuryResources luxResource)
 	{
-		width = pixelWidth;
-		t = terrain;
-		b = biome;
+		this(xLoc, yLoc, pixelWidth, terrain, biome);
 		lr = luxResource;
-		x = xLoc;
-		y = yLoc;
-		yield = new Yields();
-		ym = new ArrayList<YieldModifier>();
-		ym.add(terrain);
 		ym.add(luxResource);
 		updateYeilds();
 	}
@@ -86,15 +79,8 @@ public class Tile
 	 */
 	public Tile(int xLoc, int yLoc, int pixelWidth, Terrain terrain, Biome biome, Resources resource)
 	{
-		width = pixelWidth;
-		t = terrain;
-		b = biome;
+		this(xLoc, yLoc, pixelWidth, terrain, biome);
 		r = resource;
-		x = xLoc;
-		y = yLoc;
-		yield = new Yields();
-		ym = new ArrayList<YieldModifier>();
-		ym.add(terrain);
 		ym.add(resource);
 		updateYeilds();
 	}
@@ -105,6 +91,10 @@ public class Tile
 	 */
 	public void updateYeilds()
 	{
+		for (int i = 0; i < ym.size(); i++)
+		{
+			yield.clear();
+		}
 		for (int i = 0; i < ym.size(); i++)
 		{
 			yield.addTo(ym.get(i).getModifiers());

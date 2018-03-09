@@ -23,25 +23,13 @@ public class Yields
 		}
 	}
 
-	public Yields(int f, int p)
+	public Yields(int f, int p, int g, int s, int c)
 	{
 		theYields[0] = f;
 		theYields[1] = p;
-		for (int i = 2; i < 5; i++)
-		{
-			theYields[i] = 0;
-		}
-	}
-
-	public Yields(int f, int p, int g)
-	{
-		theYields[0] = f;
-		theYields[1] = p;
-		theYields[2] = g;
-		for (int i = 3; i < 5; i++)
-		{
-			theYields[i] = 0;
-		}
+		theYields[2] = g;	
+		theYields[3] = s;
+		theYields[3] = c;
 	}
 
 	public void changeFood(int amount)
@@ -99,6 +87,14 @@ public class Yields
 		for (int i = 0; i < 5; i++)
 		{
 			theYields[i] += y.getYields()[i];
+		}
+	}
+	
+	public void clear()
+	{
+		for (int i = 0; i < 5; i++)
+		{
+			theYields[i] = 0;
 		}
 	}
 
