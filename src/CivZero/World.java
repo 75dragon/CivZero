@@ -8,13 +8,13 @@ public class World
 {
 	private int xDim;
 	private int yDim;
-	int dim;
+	int tilePixelSideLength;
 	private Tile[][] theWorlds;
 	Generate gen;
 	Displayer Dis;
 
 	/**
-	 * The hub of everything. Creates the generator to make the map Creates the
+	 * The hub of everything. Creates the generator to make the map then creates the
 	 * displayer to manage the game
 	 * 
 	 * @param x
@@ -24,14 +24,14 @@ public class World
 	 * @param dimention
 	 *            how wide the tiles are (100) pref
 	 */
-	World(int x, int y, int dimention)
+	World(int xDim, int yDim, int tilePixelSideLength)
 	{
-		dim = dimention;
-		setxDim(x);
-		setyDim(y);
-		gen = new Generate(getxDim(), getyDim(), dimention);
+		this.tilePixelSideLength = tilePixelSideLength;
+		this.xDim = xDim;
+		this.yDim = yDim;
+		gen = new Generate(xDim, yDim, tilePixelSideLength);
 		setTheWorlds(gen.getGameWorld());
-		Dis = new Displayer(getxDim(), getyDim(), dimention, this);
+		Dis = new Displayer(xDim, yDim, tilePixelSideLength, this);
 	}
 
 	/**

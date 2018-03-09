@@ -12,10 +12,6 @@ public class Generate
 {
 	String[][] world;
 
-	String[][] holdPattern;
-
-	String[][] resource;
-
 	private Tile[][] gameWorld;
 
 	int[][] numbers;
@@ -31,21 +27,23 @@ public class Generate
 	
 	Random rand;
 
-	int iE = 0;
-
-	int jE = 0;
-
-	int d = 0;
+	int tilePixelSideLength = 0;
 
 	String water = ".";
 
-	public Generate(int x, int y, int dim)
+	/**
+	 * Generates the playing map. xDim = number of columns, yDim = number of rows.
+	 * @param xDim
+	 * @param yDim
+	 * @param tilePixelSideLength
+	 */
+	public Generate(int xDim, int yDim, int tilePixelSideLength)
 	{
-		d = dim;
+		this.tilePixelSideLength = tilePixelSideLength;
 		rand = new Random();
-		row = y;
-		col = x;
-		world = new String[x][y];
+		row = yDim;
+		col = xDim;
+		world = new String[xDim][yDim];
 		makeBlankWorld();
 		makeWorld(WATERPERCENTAGE, water);
 		for (int i = 0; i < 3; i++)
@@ -75,128 +73,128 @@ public class Generate
 			{
 				if (world[i][j] == water)
 				{
-					gameWorld[i][j] = new Tile(i, j, d, Terrain.WATER, Biome.GRASSLAND);
+					gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.WATER, Biome.GRASSLAND);
 				}
 				else if (world[i][j].contains("Hills"))
 				{
 					if (world[i][j].contains("Wheat"))
 					{
-						gameWorld[i][j] = new Tile(i, j, d, Terrain.HILL, Biome.GRASSLAND, Resources.WHEAT);
+						gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.HILL, Biome.GRASSLAND, Resources.WHEAT);
 					}
 					else if (world[i][j].contains("Cattle"))
 					{
-						gameWorld[i][j] = new Tile(i, j, d, Terrain.HILL, Biome.GRASSLAND, Resources.CATTLE);
+						gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.HILL, Biome.GRASSLAND, Resources.CATTLE);
 					}
 					else if (world[i][j].contains("Horse"))
 					{
-						gameWorld[i][j] = new Tile(i, j, d, Terrain.HILL, Biome.GRASSLAND, Resources.HORSE);
+						gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.HILL, Biome.GRASSLAND, Resources.HORSE);
 					}
 					else if (world[i][j].contains("Sheep"))
 					{
-						gameWorld[i][j] = new Tile(i, j, d, Terrain.HILL, Biome.GRASSLAND, Resources.SHEEP);
+						gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.HILL, Biome.GRASSLAND, Resources.SHEEP);
 					}
 					else if (world[i][j].contains("Citrus"))
 					{
-						gameWorld[i][j] = new Tile(i, j, d, Terrain.HILL, Biome.GRASSLAND, LuxuryResources.CITRUS);
+						gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.HILL, Biome.GRASSLAND, LuxuryResources.CITRUS);
 					}
 					else if (world[i][j].contains("Silver"))
 					{
-						gameWorld[i][j] = new Tile(i, j, d, Terrain.HILL, Biome.GRASSLAND, LuxuryResources.SILVER);
+						gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.HILL, Biome.GRASSLAND, LuxuryResources.SILVER);
 					}
 					else if (world[i][j].contains("Gold"))
 					{
-						gameWorld[i][j] = new Tile(i, j, d, Terrain.HILL, Biome.GRASSLAND, LuxuryResources.GOLD);
+						gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.HILL, Biome.GRASSLAND, LuxuryResources.GOLD);
 					}
 					else if (world[i][j].contains("Salt"))
 					{
-						gameWorld[i][j] = new Tile(i, j, d, Terrain.HILL, Biome.GRASSLAND, LuxuryResources.SALT);
+						gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.HILL, Biome.GRASSLAND, LuxuryResources.SALT);
 					}
 					else
 					{
-						gameWorld[i][j] = new Tile(i, j, d, Terrain.HILL, Biome.GRASSLAND);
+						gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.HILL, Biome.GRASSLAND);
 					}
 				}
 				else if (world[i][j].contains("Plains"))
 				{
 					if (world[i][j].contains("Wheat"))
 					{
-						gameWorld[i][j] = new Tile(i, j, d, Terrain.PLAIN, Biome.GRASSLAND, Resources.WHEAT);
+						gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.PLAIN, Biome.GRASSLAND, Resources.WHEAT);
 					}
 					else if (world[i][j].contains("Cattle"))
 					{
-						gameWorld[i][j] = new Tile(i, j, d, Terrain.PLAIN, Biome.GRASSLAND, Resources.CATTLE);
+						gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.PLAIN, Biome.GRASSLAND, Resources.CATTLE);
 					}
 					else if (world[i][j].contains("Horse"))
 					{
-						gameWorld[i][j] = new Tile(i, j, d, Terrain.PLAIN, Biome.GRASSLAND, Resources.HORSE);
+						gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.PLAIN, Biome.GRASSLAND, Resources.HORSE);
 					}
 					else if (world[i][j].contains("Sheep"))
 					{
-						gameWorld[i][j] = new Tile(i, j, d, Terrain.PLAIN, Biome.GRASSLAND, Resources.SHEEP);
+						gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.PLAIN, Biome.GRASSLAND, Resources.SHEEP);
 					}
 					else if (world[i][j].contains("Citrus"))
 					{
-						gameWorld[i][j] = new Tile(i, j, d, Terrain.PLAIN, Biome.GRASSLAND, LuxuryResources.CITRUS);
+						gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.PLAIN, Biome.GRASSLAND, LuxuryResources.CITRUS);
 					}
 					else if (world[i][j].contains("Silver"))
 					{
-						gameWorld[i][j] = new Tile(i, j, d, Terrain.PLAIN, Biome.GRASSLAND, LuxuryResources.SILVER);
+						gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.PLAIN, Biome.GRASSLAND, LuxuryResources.SILVER);
 					}
 					else if (world[i][j].contains("Gold"))
 					{
-						gameWorld[i][j] = new Tile(i, j, d, Terrain.PLAIN, Biome.GRASSLAND, LuxuryResources.GOLD);
+						gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.PLAIN, Biome.GRASSLAND, LuxuryResources.GOLD);
 					}
 					else if (world[i][j].contains("Salt"))
 					{
-						gameWorld[i][j] = new Tile(i, j, d, Terrain.PLAIN, Biome.GRASSLAND, LuxuryResources.SALT);
+						gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.PLAIN, Biome.GRASSLAND, LuxuryResources.SALT);
 					}
 					else
 					{
-						gameWorld[i][j] = new Tile(i, j, d, Terrain.PLAIN, Biome.GRASSLAND);
+						gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.PLAIN, Biome.GRASSLAND);
 					}
 				}
 				else if (world[i][j].contains("Grassland"))
 				{
 					if (world[i][j].contains("Wheat"))
 					{
-						gameWorld[i][j] = new Tile(i, j, d, Terrain.FLAT, Biome.GRASSLAND, Resources.WHEAT);
+						gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.FLAT, Biome.GRASSLAND, Resources.WHEAT);
 					}
 					else if (world[i][j].contains("Cattle"))
 					{
-						gameWorld[i][j] = new Tile(i, j, d, Terrain.FLAT, Biome.GRASSLAND, Resources.CATTLE);
+						gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.FLAT, Biome.GRASSLAND, Resources.CATTLE);
 					}
 					else if (world[i][j].contains("Horse"))
 					{
-						gameWorld[i][j] = new Tile(i, j, d, Terrain.FLAT, Biome.GRASSLAND, Resources.HORSE);
+						gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.FLAT, Biome.GRASSLAND, Resources.HORSE);
 					}
 					else if (world[i][j].contains("Sheep"))
 					{
-						gameWorld[i][j] = new Tile(i, j, d, Terrain.FLAT, Biome.GRASSLAND, Resources.SHEEP);
+						gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.FLAT, Biome.GRASSLAND, Resources.SHEEP);
 					}
 					else if (world[i][j].contains("Citrus"))
 					{
-						gameWorld[i][j] = new Tile(i, j, d, Terrain.FLAT, Biome.GRASSLAND, LuxuryResources.CITRUS);
+						gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.FLAT, Biome.GRASSLAND, LuxuryResources.CITRUS);
 					}
 					else if (world[i][j].contains("Silver"))
 					{
-						gameWorld[i][j] = new Tile(i, j, d, Terrain.FLAT, Biome.GRASSLAND, LuxuryResources.SILVER);
+						gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.FLAT, Biome.GRASSLAND, LuxuryResources.SILVER);
 					}
 					else if (world[i][j].contains("Gold"))
 					{
-						gameWorld[i][j] = new Tile(i, j, d, Terrain.FLAT, Biome.GRASSLAND, LuxuryResources.GOLD);
+						gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.FLAT, Biome.GRASSLAND, LuxuryResources.GOLD);
 					}
 					else if (world[i][j].contains("Salt"))
 					{
-						gameWorld[i][j] = new Tile(i, j, d, Terrain.FLAT, Biome.GRASSLAND, LuxuryResources.SALT);
+						gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.FLAT, Biome.GRASSLAND, LuxuryResources.SALT);
 					}
 					else
 					{
-						gameWorld[i][j] = new Tile(i, j, d, Terrain.FLAT, Biome.GRASSLAND);
+						gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.FLAT, Biome.GRASSLAND);
 					}
 				}
 				else if (world[i][j].contains("Mountains"))
 				{
-					gameWorld[i][j] = new Tile(i, j, d, Terrain.MOUNTAIN, Biome.GRASSLAND);
+					gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.MOUNTAIN, Biome.GRASSLAND);
 				}
 				else
 				{
