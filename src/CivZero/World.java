@@ -13,6 +13,17 @@ public class World
 	Generate gen;
 	Displayer Dis;
 
+	/**
+	 * The hub of everything. Creates the generator to make the map Creates the
+	 * displayer to manage the game
+	 * 
+	 * @param x
+	 *            tiles in the x direction
+	 * @param y
+	 *            tiles in the y direction
+	 * @param dimention
+	 *            how wide the tiles are (100) pref
+	 */
 	World(int x, int y, int dimention)
 	{
 		dim = dimention;
