@@ -6,7 +6,8 @@ import java.util.ArrayList;
 
 import Gui.Drawable;
 import Resources.Resources;
-
+import Units.Scout;
+import Units.Unit;
 import Resources.LuxuryResources;
 
 public class Tile
@@ -15,6 +16,7 @@ public class Tile
 	public Yields yield;
 	public int x;
 	public int y;
+	Unit millitaryUnit;
 	Terrain t;
 	Biome b;
 	LuxuryResources lr;
@@ -44,6 +46,7 @@ public class Tile
 		ym = new ArrayList<YieldModifier>();
 		ym.add(terrain);
 		updateYeilds();
+		millitaryUnit = new Scout(x, y, pixelWidth);
 	}
 
 	/**
@@ -120,6 +123,10 @@ public class Tile
 		if (y % 2 == 0)
 		{
 			g.fillRect(x * width, y * width, width, width);
+			if (millitaryUnit != null)
+			{
+				millitaryUnit.drawMe(x * width + 25, y * width + 25, width, g);
+			}
 			for (int i = 0; i < yield.getFood(); i++)
 			{
 				g.setColor(Color.RED);
@@ -148,6 +155,10 @@ public class Tile
 		else
 		{
 			g.fillRect(x * width + (int) (width * .5), y * width, width, width);
+			if (millitaryUnit != null)
+			{
+				millitaryUnit.drawMe(x * width + (int) (.5 * width) + 25, y * width + 25, width, g);
+			}
 			for (int i = 0; i < yield.getFood(); i++)
 			{
 				g.setColor(Color.RED);
