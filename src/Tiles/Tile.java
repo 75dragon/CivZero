@@ -50,38 +50,28 @@ public class Tile
 	}
 
 	/**
-	 * Tile constructor, with Lux resource
-	 * 
-	 * @param xLoc
-	 * @param yLoc
-	 * @param pixelWidth
-	 * @param terrain
-	 * @param biome
-	 * @param luxResource
-	 */
-	public Tile(int xLoc, int yLoc, int pixelWidth, Terrain terrain, Biome biome, LuxuryResources luxResource)
-	{
-		this(xLoc, yLoc, pixelWidth, terrain, biome);
-		lr = luxResource;
-		ym.add(luxResource);
-		updateYeilds();
-	}
-
-	/**
-	 * Tile constructor, with resource
-	 * 
+	 * Tile constructor, with additional resources. Accepts null for the resources
 	 * @param xLoc
 	 * @param yLoc
 	 * @param pixelWidth
 	 * @param terrain
 	 * @param biome
 	 * @param resource
+	 * @param luxResource
 	 */
-	public Tile(int xLoc, int yLoc, int pixelWidth, Terrain terrain, Biome biome, Resources resource)
+	public Tile(int xLoc, int yLoc, int pixelWidth, Terrain terrain, Biome biome, Resources resource, LuxuryResources luxResource)
 	{
 		this(xLoc, yLoc, pixelWidth, terrain, biome);
-		r = resource;
-		ym.add(resource);
+		if (resource != null)
+		{
+			r = resource;
+			ym.add(resource);
+		}
+		if (luxResource != null)
+		{
+		lr = luxResource;
+		ym.add(luxResource);
+		}
 		updateYeilds();
 	}
 
