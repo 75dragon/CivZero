@@ -9,13 +9,13 @@ public class World
 	private int xDim;
 	private int yDim;
 	int tilePixelSideLength;
-	private Tile[][] theWorlds;
+	private Tile[][] theWorld;
 	Generate gen;
 	Displayer Dis;
 
 	/**
-	 * The hub of everything. Creates the generator to make the map then creates the
-	 * displayer to manage the game
+	 * The hub of everything. Creates the generator to make the map then creates
+	 * the displayer to manage the game
 	 * 
 	 * @param x
 	 *            tiles in the x direction
@@ -32,6 +32,34 @@ public class World
 		gen = new Generate(xDim, yDim, tilePixelSideLength);
 		setTheWorlds(gen.getGameWorld());
 		Dis = new Displayer(xDim, yDim, tilePixelSideLength, this);
+	}
+
+	public void setReachableTiles(int range, int xLoc, int yLoc)
+	{
+		theWorld[xLoc][yLoc].setReachable(true);
+		if (range == 0)
+		{
+			return;
+		}
+		range--;
+		if (yLoc % 2 == 0)
+		{
+			setReachableTiles(range, xLoc - 1, yLoc + 1); 
+			setReachableTiles(range, xLoc + 1, yLoc );
+			setReachableTiles(range, xLoc, yLoc + 1);
+			setReachableTiles(range, xLoc, yLoc - 1); 
+			setReachableTiles(range, xLoc - 1, yLoc);
+			setReachableTiles(range, xLoc - 1, yLoc - 1);
+		}
+		else
+		{
+			setReachableTiles(range, xLoc + 1, yLoc + 1); 
+			setReachableTiles(range, xLoc + 1, yLoc );
+			setReachableTiles(range, xLoc, yLoc + 1);
+			setReachableTiles(range, xLoc, yLoc - 1); 
+			setReachableTiles(range, xLoc - 1, yLoc);
+			setReachableTiles(range, xLoc + 1, yLoc - 1);
+		}
 	}
 
 	/**
@@ -83,7 +111,7 @@ public class World
 	 */
 	public Tile[][] getWorld()
 	{
-		return theWorlds;
+		return theWorld;
 	}
 
 	/**
@@ -94,7 +122,7 @@ public class World
 	 */
 	public void setTheWorlds(Tile[][] theWorlds)
 	{
-		this.theWorlds = theWorlds;
+		this.theWorld = theWorlds;
 	}
 
 	/**

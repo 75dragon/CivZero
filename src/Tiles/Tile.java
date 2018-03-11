@@ -24,6 +24,7 @@ public class Tile
 	ArrayList<YieldModifier> ym;
 	Color color;
 	int width;
+	boolean isReachable = false;
 	Color gold = new Color(255, 200, 0);
 
 	/**
@@ -164,6 +165,16 @@ public class Tile
 				}
 			}
 		}
+	}
+	
+	public void setReachable(Boolean reach)
+	{
+		isReachable = reach;
+	}
+	
+	public boolean getReachable()
+	{
+		return isReachable;
 	}
 
 }
