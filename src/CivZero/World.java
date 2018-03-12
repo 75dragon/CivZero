@@ -3,9 +3,12 @@ package CivZero;
 import Gui.Displayer;
 import Map.Generate;
 import Tiles.Tile;
+import Units.Scout;
 
 public class World
 {
+	int activeX;
+	int activeY;
 	private int xDim;
 	private int yDim;
 	int tilePixelSideLength;
@@ -31,6 +34,7 @@ public class World
 		this.yDim = yDim;
 		gen = new Generate(xDim, yDim, tilePixelSideLength);
 		setTheWorlds(gen.getGameWorld());
+		theWorld[0][0].setMillitaryUnit(new Scout(0,0,2));
 		Dis = new Displayer(xDim, yDim, tilePixelSideLength, this);
 	}
 	

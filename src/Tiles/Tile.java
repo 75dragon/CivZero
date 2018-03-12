@@ -47,7 +47,6 @@ public class Tile
 		ym = new ArrayList<YieldModifier>();
 		ym.add(terrain);
 		updateYeilds();
-		millitaryUnit = new Scout(x, y, pixelWidth);
 	}
 
 	/**
@@ -180,5 +179,28 @@ public class Tile
 	{
 		return isReachable;
 	}
+	
+	public Unit getMillitaryUnit()
+	{
+		return millitaryUnit;
+	}
 
+	public void setMillitaryUnit(Unit millitaryUnit)
+	{
+		this.millitaryUnit = millitaryUnit;
+	}
+	
+	public boolean clickOn()
+	{
+		if(isReachable == true && millitaryUnit == null)
+		{
+			return true;
+		}
+		if(millitaryUnit == null)
+		{
+			return false;
+		}
+		if()
+		return true;
+	}
 }
