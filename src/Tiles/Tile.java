@@ -101,6 +101,10 @@ public class Tile
 	public void drawMe(Graphics g)
 	{
 		g.setColor(t.getCol());
+		if(isReachable)
+		{
+			g.setColor(Color.BLACK);
+		}
 		if (y % 2 == 0)
 		{
 			g.fillRect(x * width, y * width, width, width);

@@ -17,7 +17,14 @@ public class MapListener implements MouseListener
 	@Override
 	public void mouseClicked(MouseEvent arg0)
 	{
-		
+		if ((arg0.getY() / w.getTilePixelSideLength()) % 2 == 0)
+		{
+			w.setReachableTiles(2 , arg0.getX() / w.getTilePixelSideLength(),arg0.getY() / w.getTilePixelSideLength());
+		}
+		else
+		{
+			w.setReachableTiles(2 , (arg0.getX() - w.getTilePixelSideLength() / 2) / w.getTilePixelSideLength(),arg0.getY() / w.getTilePixelSideLength());
+		}
 	}
 
 	@Override

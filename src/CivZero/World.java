@@ -33,9 +33,36 @@ public class World
 		setTheWorlds(gen.getGameWorld());
 		Dis = new Displayer(xDim, yDim, tilePixelSideLength, this);
 	}
+	
+	public void resetReachableTiles()
+	{
+		for (int i = 0; i < xDim; i++)
+		{
+			for (int j = 0; j < yDim; j++)
+			{
+				theWorld[i][j].setReachable(false);
+			}
+		}
+	}
 
 	public void setReachableTiles(int range, int xLoc, int yLoc)
 	{
+		if ( xLoc < 0 )
+		{
+			xLoc = xLoc + xDim;
+		}
+		if ( xLoc > xDim )
+		{
+			xLoc = xLoc - xDim;
+		}
+		if ( yLoc < 0 )
+		{
+			yLoc = yLoc + yDim;
+		}
+		if ( yLoc > yDim )
+		{
+			yLoc = yLoc - yDim;
+		}
 		theWorld[xLoc][yLoc].setReachable(true);
 		if (range == 0)
 		{
@@ -131,6 +158,16 @@ public class World
 	public Displayer getDisplayer()
 	{
 		return Dis;
+	}
+
+	public int getTilePixelSideLength()
+	{
+		return tilePixelSideLength;
+	}
+
+	public void setTilePixelSideLength(int tilePixelSideLength)
+	{
+		this.tilePixelSideLength = tilePixelSideLength;
 	}
 
 }
