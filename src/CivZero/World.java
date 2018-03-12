@@ -51,7 +51,7 @@ public class World
 		{
 			xLoc = xLoc + xDim;
 		}
-		if ( xLoc > xDim )
+		if ( xLoc >= xDim )
 		{
 			xLoc = xLoc - xDim;
 		}
@@ -59,7 +59,7 @@ public class World
 		{
 			yLoc = yLoc + yDim;
 		}
-		if ( yLoc > yDim )
+		if ( yLoc >= yDim )
 		{
 			yLoc = yLoc - yDim;
 		}
