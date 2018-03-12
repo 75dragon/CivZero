@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import CivZero.World;
 import Gui.Drawable;
 import Resources.Resources;
 import Units.Scout;
@@ -12,7 +13,7 @@ import Resources.LuxuryResources;
 
 public class Tile
 {
-
+	World world;
 	public Yields yield;
 	public int x;
 	public int y;
@@ -35,9 +36,11 @@ public class Tile
 	 * @param pixelWidth
 	 * @param terrain
 	 * @param biome
+	 * @param world
 	 */
-	public Tile(int xLoc, int yLoc, int pixelWidth, Terrain terrain, Biome biome)
+	public Tile(int xLoc, int yLoc, int pixelWidth, Terrain terrain, Biome biome, World world)
 	{
+		this.world = world;
 		width = pixelWidth;
 		t = terrain;
 		b = biome;
@@ -56,12 +59,13 @@ public class Tile
 	 * @param pixelWidth
 	 * @param terrain
 	 * @param biome
+	 * @param world
 	 * @param resource
 	 * @param luxResource
 	 */
-	public Tile(int xLoc, int yLoc, int pixelWidth, Terrain terrain, Biome biome, Resources resource, LuxuryResources luxResource)
+	public Tile(int xLoc, int yLoc, int pixelWidth, Terrain terrain, Biome biome, World world, Resources resource, LuxuryResources luxResource)
 	{
-		this(xLoc, yLoc, pixelWidth, terrain, biome);
+		this(xLoc, yLoc, pixelWidth, terrain, biome,world);
 		if (resource != null)
 		{
 			r = resource;
@@ -192,15 +196,32 @@ public class Tile
 	
 	public boolean clickOn()
 	{
-		if(isReachable == true && millitaryUnit == null)
+		//if there is a current active unit
+		if(world.isActive())
 		{
-			return true;
+			if (millitaryUnit == null && isReachable)
+			{
+				millitaryUnit = world.getWorld()[world.getActiveX()][world.getActiveY()].getMillitaryUnit();
+				world.getWorld()[world.getActiveX()][world.getActiveY()].setMillitaryUnit(null);
+				world.setActive(false);
+				world.resetReachableTiles();
+				return true;
+			}
+			else
+			{
+				world.setActive(false);
+				world.resetReachableTiles();
+				return false;
+			}
 		}
 		if(millitaryUnit == null)
 		{
 			return false;
 		}
-		if()
+		world.setReachableTiles(millitaryUnit.getMovement(), x, y);
+		world.setActive(true);
+		world.setActiveX(x);
+		world.setActiveY(y);
 		return true;
 	}
 }

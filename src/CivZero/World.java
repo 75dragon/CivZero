@@ -7,6 +7,7 @@ import Units.Scout;
 
 public class World
 {
+	boolean isActive = false;
 	int activeX;
 	int activeY;
 	private int xDim;
@@ -32,7 +33,7 @@ public class World
 		this.tilePixelSideLength = tilePixelSideLength;
 		this.xDim = xDim;
 		this.yDim = yDim;
-		gen = new Generate(xDim, yDim, tilePixelSideLength);
+		gen = new Generate(xDim, yDim, tilePixelSideLength, this);
 		setTheWorlds(gen.getGameWorld());
 		theWorld[0][0].setMillitaryUnit(new Scout(0,0,2));
 		Dis = new Displayer(xDim, yDim, tilePixelSideLength, this);
@@ -172,6 +173,36 @@ public class World
 	public void setTilePixelSideLength(int tilePixelSideLength)
 	{
 		this.tilePixelSideLength = tilePixelSideLength;
+	}
+
+	public boolean isActive()
+	{
+		return isActive;
+	}
+
+	public void setActive(boolean isActive)
+	{
+		this.isActive = isActive;
+	}
+
+	public int getActiveX()
+	{
+		return activeX;
+	}
+
+	public void setActiveX(int activeX)
+	{
+		this.activeX = activeX;
+	}
+
+	public int getActiveY()
+	{
+		return activeY;
+	}
+
+	public void setActiveY(int activeY)
+	{
+		this.activeY = activeY;
 	}
 
 }

@@ -100,4 +100,15 @@ public class Unit
 		g.drawImage(img, x, y, null);
 
 	}
+
+	public int getMovement()
+	{
+		return movement;
+	}
+
+	public void setMovement(int movement)
+	{
+		this.movement = movement;
+	}
+	
 }

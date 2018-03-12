@@ -2,6 +2,7 @@ package Map;
 
 import java.util.Random;
 
+import CivZero.World;
 import Tiles.Biome;
 import Tiles.Terrain;
 import Tiles.Tile;
@@ -26,6 +27,7 @@ public class Generate
 	private static final int PLAINPERCENTAGE = 23;
 	
 	Random rand;
+	World w;
 
 	int tilePixelSideLength = 0;
 
@@ -36,9 +38,11 @@ public class Generate
 	 * @param xDim
 	 * @param yDim
 	 * @param tilePixelSideLength
+	 * @param w
 	 */
-	public Generate(int xDim, int yDim, int tilePixelSideLength)
+	public Generate(int xDim, int yDim, int tilePixelSideLength, World w)
 	{
+		this.w = w;
 		this.tilePixelSideLength = tilePixelSideLength;
 		rand = new Random();
 		row = yDim;
@@ -77,12 +81,12 @@ public class Generate
 			{
 				if (world[i][j] == water)
 				{
-					gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.WATER, Biome.GRASSLAND);
+					gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.WATER, Biome.GRASSLAND, w);
 					continue;
 				}
 				else if (world[i][j] == "Mountians")
 				{
-					gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.MOUNTAIN, Biome.GRASSLAND);
+					gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, Terrain.MOUNTAIN, Biome.GRASSLAND, w);
 					continue;
 				}
 				//make the terrain type
@@ -140,7 +144,7 @@ public class Generate
 				{
 					holdL = null;
 				}
-				gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, holdT, holdB, holdR, holdL);	
+				gameWorld[i][j] = new Tile(i, j, tilePixelSideLength, holdT, holdB,w, holdR, holdL);	
 			}
 		}
 	}

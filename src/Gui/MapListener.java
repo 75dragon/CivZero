@@ -21,16 +21,16 @@ public class MapListener implements MouseListener
 	{
 		if (((arg0.getY() + w.getDisplayer().getGamepanel().getYTranslate()) / w.getTilePixelSideLength()) % 2 == 0)
 		{
-			w.setReachableTiles(2,
-					(arg0.getX() + w.getDisplayer().getGamepanel().getXTranslate()) / w.getTilePixelSideLength(),
-					(arg0.getY() + w.getDisplayer().getGamepanel().getYTranslate()) / w.getTilePixelSideLength());
+			w.getWorld()[(arg0.getX() + w.getDisplayer().getGamepanel().getXTranslate())
+					/ w.getTilePixelSideLength()][(arg0.getY() + w.getDisplayer().getGamepanel().getYTranslate())
+							/ w.getTilePixelSideLength()].clickOn();
 		}
 		else
 		{
-			w.setReachableTiles(2,
-					(arg0.getX() + w.getDisplayer().getGamepanel().getXTranslate() - w.getTilePixelSideLength() / 2)
-							/ w.getTilePixelSideLength(),
-					(arg0.getY() + w.getDisplayer().getGamepanel().getYTranslate()) / w.getTilePixelSideLength());
+			w.getWorld()[(arg0.getX() + w.getDisplayer().getGamepanel().getXTranslate()
+					- w.getTilePixelSideLength() / 2)
+					/ w.getTilePixelSideLength()][(arg0.getY() + w.getDisplayer().getGamepanel().getYTranslate())
+							/ w.getTilePixelSideLength()].clickOn();
 		}
 	}
 
