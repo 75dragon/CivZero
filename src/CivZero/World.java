@@ -36,6 +36,7 @@ public class World
 		gen = new Generate(xDim, yDim, tilePixelSideLength, this);
 		setTheWorlds(gen.getGameWorld());
 		theWorld[0][0].setMillitaryUnit(new Scout(0,0,2));
+		theWorld[2][2].setMillitaryUnit(new Scout(2,2,2));
 		Dis = new Displayer(xDim, yDim, tilePixelSideLength, this);
 	}
 	
