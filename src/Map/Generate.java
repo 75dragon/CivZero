@@ -20,11 +20,15 @@ public class Generate
 	int col, row;
 	
 	private static final int MOUNTAINSPAWNCHANCE = 50;
-	private static final int RESOURCESPAWNCHANCE = 30;
-	private static final int LUXURYRESOURCESPAWNCHANCE = 35;
+	private static final int RESOURCESPAWNCHANCE = 4;
+	private static final int LUXURYRESOURCESPAWNCHANCE = 8;
 	private static final int WATERPERCENTAGE = 52;
 	private static final int HILLPERCENTAGE = 23;
 	private static final int PLAINPERCENTAGE = 23;
+	
+	private static final String[] LUXURYRESOURCES = {"CITRUS","SILVER","GOLD","SALT"};
+	private static final String[] RESOURCES = {"WHEAT","CATTLE","HORSE","SHEEP"};
+	private static final String[] TERRAINS = {"GRASSLAND","PLAIN","HILL","MOUNTAIN"};
 	
 	Random rand;
 	World w;
@@ -103,19 +107,19 @@ public class Generate
 					holdT = Terrain.FLAT;			
 				}
 				//add additional resource if applicable
-				if (world[i][j].contains("Wheat"))
+				if (world[i][j].contains("WHEAT"))
 				{
 					holdR = Resources.WHEAT;
 				}
-				else if (world[i][j].contains("Cattle"))
+				else if (world[i][j].contains("CATTLE"))
 				{
 					holdR = Resources.CATTLE;
 				}
-				else if (world[i][j].contains("Horse"))
+				else if (world[i][j].contains("HORSE"))
 				{
 					holdR = Resources.HORSE;
 				}
-				else if (world[i][j].contains("Sheep"))
+				else if (world[i][j].contains("SHEEP"))
 				{
 					holdR = Resources.WHEAT;
 				}
@@ -124,19 +128,19 @@ public class Generate
 					holdR = null;
 				}
 				//add lux resources
-				if (world[i][j].contains("Citrus"))
+				if (world[i][j].contains("CITRUS"))
 				{
 					holdL = LuxuryResources.CITRUS;
 				}
-				else if (world[i][j].contains("Silver"))
+				else if (world[i][j].contains("SILVER"))
 				{
 					holdL = LuxuryResources.SILVER;
 				}
-				else if (world[i][j].contains("Gold"))
+				else if (world[i][j].contains("GOLD"))
 				{
 					holdL = LuxuryResources.GOLD;
 				}
-				else if (world[i][j].contains("Salt"))
+				else if (world[i][j].contains("SALT"))
 				{
 					holdL = LuxuryResources.SALT;
 				}
@@ -324,35 +328,11 @@ public class Generate
 					}
 					else if (rand.nextInt(RESOURCESPAWNCHANCE) == 0)
 					{
-						world[i][j] = world[i][j] + "Wheat";
-					}
-					else if (rand.nextInt(RESOURCESPAWNCHANCE) == 0)
-					{
-						world[i][j] = world[i][j] + "Cattle";
-					}
-					else if (rand.nextInt(RESOURCESPAWNCHANCE) == 0)
-					{
-						world[i][j] = world[i][j] + "Horse";
-					}
-					else if (rand.nextInt(RESOURCESPAWNCHANCE) == 0)
-					{
-						world[i][j] = world[i][j] + "Sheep";
-					} // lux
-					else if (rand.nextInt(LUXURYRESOURCESPAWNCHANCE) == 0)
-					{
-						world[i][j] = world[i][j] + "Silver";
+						world[i][j] = world[i][j] + RESOURCES[rand.nextInt(4)];
 					}
 					else if (rand.nextInt(LUXURYRESOURCESPAWNCHANCE) == 0)
 					{
-						world[i][j] = world[i][j] + "Gold";
-					}
-					else if (rand.nextInt(LUXURYRESOURCESPAWNCHANCE) == 0)
-					{
-						world[i][j] = world[i][j] + "Salt";
-					}
-					else if (rand.nextInt(LUXURYRESOURCESPAWNCHANCE) == 0)
-					{
-						world[i][j] = world[i][j] + "Citrus";
+						world[i][j] = world[i][j] + LUXURYRESOURCES[rand.nextInt(4)];
 					}
 				}
 			}

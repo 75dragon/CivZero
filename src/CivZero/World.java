@@ -75,22 +75,18 @@ public class World
 			return;
 		}
 		range--;
+		setReachableTiles(range, xLoc + 1, yLoc );
+		setReachableTiles(range, xLoc, yLoc + 1);
+		setReachableTiles(range, xLoc, yLoc - 1); 
+		setReachableTiles(range, xLoc - 1, yLoc);
 		if (yLoc % 2 == 0)
 		{
 			setReachableTiles(range, xLoc - 1, yLoc + 1); 
-			setReachableTiles(range, xLoc + 1, yLoc );
-			setReachableTiles(range, xLoc, yLoc + 1);
-			setReachableTiles(range, xLoc, yLoc - 1); 
-			setReachableTiles(range, xLoc - 1, yLoc);
 			setReachableTiles(range, xLoc - 1, yLoc - 1);
 		}
 		else
 		{
 			setReachableTiles(range, xLoc + 1, yLoc + 1); 
-			setReachableTiles(range, xLoc + 1, yLoc );
-			setReachableTiles(range, xLoc, yLoc + 1);
-			setReachableTiles(range, xLoc, yLoc - 1); 
-			setReachableTiles(range, xLoc - 1, yLoc);
 			setReachableTiles(range, xLoc + 1, yLoc - 1);
 		}
 	}
