@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import CivZero.World;
 import Gui.Drawable;
 import Resources.Resources;
-import Units.Scout;
 import Units.Unit;
 import Resources.LuxuryResources;
 
 public class Tile
 {
+	int shift = 0;
 	World world;
 	public Yields yield;
 	public int x;
@@ -46,6 +46,10 @@ public class Tile
 		b = biome;
 		x = xLoc;
 		y = yLoc;
+		if (yLoc % 2 == 1)
+		{
+			shift = pixelWidth / 2;
+		}
 		yield = new Yields();
 		ym = new ArrayList<YieldModifier>();
 		ym.add(terrain);
@@ -53,7 +57,9 @@ public class Tile
 	}
 
 	/**
-	 * Tile constructor, with additional resources. Accepts null for the resources
+	 * Tile constructor, with additional resources. Accepts null for the
+	 * resources
+	 * 
 	 * @param xLoc
 	 * @param yLoc
 	 * @param pixelWidth
@@ -63,9 +69,10 @@ public class Tile
 	 * @param resource
 	 * @param luxResource
 	 */
-	public Tile(int xLoc, int yLoc, int pixelWidth, Terrain terrain, Biome biome, World world, Resources resource, LuxuryResources luxResource)
+	public Tile(int xLoc, int yLoc, int pixelWidth, Terrain terrain, Biome biome, World world, Resources resource,
+			LuxuryResources luxResource)
 	{
-		this(xLoc, yLoc, pixelWidth, terrain, biome,world);
+		this(xLoc, yLoc, pixelWidth, terrain, biome, world);
 		if (resource != null)
 		{
 			r = resource;
@@ -73,8 +80,8 @@ public class Tile
 		}
 		if (luxResource != null)
 		{
-		lr = luxResource;
-		ym.add(luxResource);
+			lr = luxResource;
+			ym.add(luxResource);
 		}
 		updateYeilds();
 	}
@@ -104,86 +111,51 @@ public class Tile
 	public void drawMe(Graphics g)
 	{
 		g.setColor(t.getCol());
-		if(isReachable)
+		if (isReachable)
 		{
 			g.setColor(Color.BLACK);
 		}
-		if (y % 2 == 0)
+		g.fillRect(x * width + shift, y * width, width, width);
+		if (millitaryUnit != null)
 		{
-			g.fillRect(x * width, y * width, width, width);
-			if (millitaryUnit != null)
-			{
-				millitaryUnit.drawMe(x * width + 25, y * width + 25, width, g);
-			}
-			for (int i = 0; i < yield.getFood(); i++)
-			{
-				g.setColor(Color.RED);
-				g.fillOval(x * width + i * 7 + (int) (width * .5), y * width + (int) (width * .5), 5, 5);
-			}
-			for (int i = 0; i < yield.getProduction(); i++)
-			{
-				g.setColor(Color.PINK);
-				g.fillOval(x * width + i * 7 + (int) (width * .5), y * width + 7 + (int) (width * .5), 5, 5);
-			}
-			for (int i = 0; i < yield.getGold(); i++)
-			{
-				g.setColor(gold);
-				g.fillOval(x * width + i * 7 + (int) (width * .5), y * width + 14 + (int) (width * .5), 5, 5);
-			}
-			g.setColor(Color.black);
-			g.drawRect(x * width, y * width, width, width);
-			for (int i = 0; i < ym.size(); i++)
-			{
-				if (ym.get(i) instanceof Drawable)
-				{
-					((Drawable) ym.get(i)).drawMe(x * width, y * width, width, g);
-				}
-			}
+			millitaryUnit.drawMe(x * width + shift + 25, y * width + 25, width, g);
 		}
-		else
+		for (int i = 0; i < yield.getFood(); i++)
 		{
-			g.fillRect(x * width + (int) (width * .5), y * width, width, width);
-			if (millitaryUnit != null)
+			g.setColor(Color.RED);
+			g.fillOval((int) ((x + .5) * width) + i * 7 + shift, y * width + (int) (width * .5), 5, 5);
+		}
+		for (int i = 0; i < yield.getProduction(); i++)
+		{
+			g.setColor(Color.PINK);
+			g.fillOval((int) ((x + .5) * width) + i * 7 + shift, y * width + (int) (width * .5) + 7, 5, 5);
+		}
+		for (int i = 0; i < yield.getGold(); i++)
+		{
+			g.setColor(gold);
+			g.fillOval((int) ((x + .5) * width) + i * 7 + shift, y * width + 14 + (int) (width * .5), 5, 5);
+		}
+		g.setColor(Color.black);
+		g.drawRect(x * width + shift, y * width, width, width);
+		for (int i = 0; i < ym.size(); i++)
+		{
+			if (ym.get(i) instanceof Drawable)
 			{
-				millitaryUnit.drawMe(x * width + (int) (.5 * width) + 25, y * width + 25, width, g);
-			}
-			for (int i = 0; i < yield.getFood(); i++)
-			{
-				g.setColor(Color.RED);
-				g.fillOval((x + 1) * width + i * 7, y * width + (int) (width * .5), 5, 5);
-			}
-			for (int i = 0; i < yield.getProduction(); i++)
-			{
-				g.setColor(Color.PINK);
-				g.fillOval((x + 1) * width + i * 7, y * width + (int) (width * .5) + 7, 5, 5);
-			}
-			for (int i = 0; i < yield.getGold(); i++)
-			{
-				g.setColor(gold);
-				g.fillOval((x + 1) * width + i * 7, y * width + 14 + (int) (width * .5), 5, 5);
-			}
-			g.setColor(Color.black);
-			g.drawRect(x * width + (int) (.5 * width), y * width, width, width);
-			for (int i = 0; i < ym.size(); i++)
-			{
-				if (ym.get(i) instanceof Drawable)
-				{
-					((Drawable) ym.get(i)).drawMe(x * width + (int) (.5 * width), y * width, width, g);
-				}
+				((Drawable) ym.get(i)).drawMe(x * width + shift, y * width, width, g);
 			}
 		}
 	}
-	
+
 	public void setReachable(Boolean reach)
 	{
 		isReachable = reach;
 	}
-	
+
 	public boolean getReachable()
 	{
 		return isReachable;
 	}
-	
+
 	public Unit getMillitaryUnit()
 	{
 		return millitaryUnit;
@@ -193,11 +165,11 @@ public class Tile
 	{
 		this.millitaryUnit = millitaryUnit;
 	}
-	
+
 	public boolean clickOn()
 	{
-		//if there is a current active unit
-		if(world.isActive())
+		// if there is a current active unit
+		if (world.isActive())
 		{
 			if (millitaryUnit == null && isReachable)
 			{
@@ -214,7 +186,7 @@ public class Tile
 				return false;
 			}
 		}
-		if(millitaryUnit == null)
+		if (millitaryUnit == null)
 		{
 			return false;
 		}
