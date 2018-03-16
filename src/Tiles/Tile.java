@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import City.CityHub;
 import CivZero.World;
 import Gui.Drawable;
 import Resources.Resources;
@@ -17,7 +18,7 @@ public class Tile
 	public Yields yield;
 	public int x;
 	public int y;
-	Unit millitaryUnit;
+	Unit militaryUnit;
 	Terrain t;
 	Biome b;
 	LuxuryResources lr;
@@ -27,6 +28,7 @@ public class Tile
 	int width;
 	boolean isReachable = false;
 	Color gold = new Color(255, 200, 0);
+	CityHub city = null;
 
 	/**
 	 * Plain tile constructor
@@ -115,9 +117,13 @@ public class Tile
 			g.setColor(Color.BLACK);
 		}
 		g.fillRect(x * width + shift, y * width, width, width);
-		if (millitaryUnit != null)
+		if (city != null)
 		{
-			millitaryUnit.drawMe(x * width + shift + 25, y * width + 25, width, g);
+			city.drawMe(x * width + shift  + width / 10 , y * width + width / 10, width, g);
+		}
+		if (militaryUnit != null)
+		{
+			militaryUnit.drawMe(x * width + shift + width / 4, y * width + width / 4, width, g);
 		}
 		for (int i = 0; i < yield.getFood(); i++)
 		{
@@ -155,10 +161,10 @@ public class Tile
 		// if there is a current active unit
 		if (world.isActive())
 		{
-			if (millitaryUnit == null && isReachable)
+			if (militaryUnit == null && isReachable)
 			{
-				millitaryUnit = world.getWorld()[world.getActiveX()][world.getActiveY()].getMillitaryUnit();
-				world.getWorld()[world.getActiveX()][world.getActiveY()].setMillitaryUnit(null);
+				militaryUnit = world.getWorld()[world.getActiveX()][world.getActiveY()].getMilitaryUnit();
+				world.getWorld()[world.getActiveX()][world.getActiveY()].setMilitaryUnit(null);
 				world.setActive(false);
 				world.resetReachableTiles();
 				return true;
@@ -170,11 +176,11 @@ public class Tile
 				return false;
 			}
 		}
-		if (millitaryUnit == null)
+		if (militaryUnit == null)
 		{
 			return false;
 		}
-		world.setReachableTiles(millitaryUnit.getMovement(), x, y);
+		world.setReachableTiles(militaryUnit.getMovement(), x, y);
 		world.setActive(true);
 		world.setActiveX(x);
 		world.setActiveY(y);
@@ -192,14 +198,14 @@ public class Tile
 		return isReachable;
 	}
 
-	public Unit getMillitaryUnit()
+	public Unit getMilitaryUnit()
 	{
-		return millitaryUnit;
+		return militaryUnit;
 	}
 
-	public void setMillitaryUnit(Unit millitaryUnit)
+	public void setMilitaryUnit(Unit millitaryUnit)
 	{
-		this.millitaryUnit = millitaryUnit;
+		this.militaryUnit = millitaryUnit;
 	}
 
 	public Yields getYield()
@@ -207,4 +213,14 @@ public class Tile
 		return yield;
 	}
 
+	public CityHub getCity()
+	{
+		return city;
+	}
+
+	public void setCity(CityHub city)
+	{
+		this.city = city;
+	}
+	
 }

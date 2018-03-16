@@ -1,5 +1,6 @@
 package CivZero;
 
+import City.CityHub;
 import Gui.Displayer;
 import Map.Generate;
 import Tiles.Tile;
@@ -37,6 +38,7 @@ public class World
 		setTheWorlds(gen.getGameWorld());
 		theWorld[0][0].setMillitaryUnit(new Scout(0,0,2));
 		theWorld[2][2].setMillitaryUnit(new Scout(2,2,2));
+		theWorld[0][0].setCity(new CityHub(xDim, yDim, this));
 		Dis = new Displayer(xDim, yDim, tilePixelSideLength, this);
 	}
 	
