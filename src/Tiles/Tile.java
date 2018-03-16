@@ -106,7 +106,6 @@ public class Tile
 	 * draws the tile in the graphics object
 	 * 
 	 * @param g
-	 *            Graphics
 	 */
 	public void drawMe(Graphics g)
 	{
@@ -146,26 +145,11 @@ public class Tile
 		}
 	}
 
-	public void setReachable(Boolean reach)
-	{
-		isReachable = reach;
-	}
-
-	public boolean getReachable()
-	{
-		return isReachable;
-	}
-
-	public Unit getMillitaryUnit()
-	{
-		return millitaryUnit;
-	}
-
-	public void setMillitaryUnit(Unit millitaryUnit)
-	{
-		this.millitaryUnit = millitaryUnit;
-	}
-
+	/**
+	 * What happens if this tile is clicked on
+	 * 
+	 * @return true of false, based off if something actually happened
+	 */
 	public boolean clickOn()
 	{
 		// if there is a current active unit
@@ -196,4 +180,31 @@ public class Tile
 		world.setActiveY(y);
 		return true;
 	}
+
+	// getters and setters
+	public void setReachable(Boolean reach)
+	{
+		isReachable = reach;
+	}
+
+	public boolean getReachable()
+	{
+		return isReachable;
+	}
+
+	public Unit getMillitaryUnit()
+	{
+		return millitaryUnit;
+	}
+
+	public void setMillitaryUnit(Unit millitaryUnit)
+	{
+		this.millitaryUnit = millitaryUnit;
+	}
+
+	public Yields getYield()
+	{
+		return yield;
+	}
+
 }

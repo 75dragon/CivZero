@@ -91,6 +91,7 @@ public class World
 		}
 	}
 
+	//getters and setters
 	/**
 	 * gets the numbers of tiles in the X demension
 	 * 

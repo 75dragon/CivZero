@@ -16,7 +16,7 @@ public class CityHub
 	int nextPopulation = 2;
 	World w;
 	Tile cityCenter;
-	Yields CityTotals;
+	Yields cityTotals;
 	ArrayList<Tile> territory = new ArrayList<Tile>();
 	ArrayList<Tile> worked = new ArrayList<Tile>();
 
@@ -25,6 +25,7 @@ public class CityHub
 		population = 1;
 		this.xLoc = xLoc;
 		this.yLoc = yLoc;
+		cityTotals = new Yields();
 	}
 
 	public void startingTiles()
@@ -44,9 +45,17 @@ public class CityHub
 			territory.add(w.getWorld()[xLoc + 1][yLoc - 1]);
 		}
 	}
+	
+	public void collectYeilds()
+	{
+		for(int i = 0; i < territory.size(); i++)
+		{
+			cityTotals.addTo(territory.get(i).getYield());
+		}
+	}
 
 	public void drawMe(Graphics g)
 	{
-
+		
 	}
 }
