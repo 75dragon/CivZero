@@ -93,6 +93,7 @@ public class CityHub
 		int xLocPlus = (xLoc + 1) % w.getxDim();
 		int yLocMinus = (yLoc - 1 + w.getyDim()) % w.getyDim();
 		int yLocPlus = (yLoc + 1) % w.getxDim();
+		territory.add(w.getWorld()[xLoc][yLoc]);
 		territory.add(w.getWorld()[xLocPlus][yLoc]);
 		territory.add(w.getWorld()[xLocMinus][yLoc]);
 		territory.add(w.getWorld()[xLoc][yLocPlus]);
@@ -125,10 +126,23 @@ public class CityHub
 		}
 	}
 
+	public void manageFood()
+	{
+		if (cityTotals.getFood() > nextPopulation)
+		{
+			population++;
+			nextPopulation *= 2;
+		}
+	}
+	
 	public void drawMe(int x, int y, int w, Graphics g)
 	{
 		g.drawImage(img, x, y, null);
 		g.setColor(Color.BLACK);
-		g.drawString("Food: " + cityTotals.getFood(), x + 10, y + 10);
+		g.drawString("F: " + cityTotals.getFood(), x + 10, y + 10);
+		g.drawString("P: " + cityTotals.getProduction(), x + 10, y + 20);
+		g.drawString("G: " + cityTotals.getGold(), x + 10, y + 30);
+		g.drawString("S: " + cityTotals.getScience(), x + 10, y + 40);
+		g.drawString("C: " + cityTotals.getCulture(), x + 10, y + 50);
 	}
 }
