@@ -24,6 +24,7 @@ public class CityHub
 	World w;
 	Tile cityCenter;
 	Yields cityTotals;
+	Yields temp;
 	ArrayList<Tile> territory = new ArrayList<Tile>();
 	ArrayList<Tile> worked = new ArrayList<Tile>();
 
@@ -37,6 +38,7 @@ public class CityHub
 		this.yLoc = yLoc;
 		cityTotals = new Yields();
 		img = scale(img, 70, 70);
+		temp = new Yields();
 	}
 
 	/**
@@ -114,10 +116,20 @@ public class CityHub
 
 	public void collectYeilds()
 	{
+		temp.clear();
 		for (int i = 0; i < territory.size(); i++)
 		{
-			cityTotals.addTo(territory.get(i).getYield());
+			temp.addTo(territory.get(i).getYield());
 		}
+		if (population < territory.size())
+		{
+			temp.setFood((temp.getFood() * population + territory.size() - 1) / territory.size());
+			temp.setProduction((temp.getProduction() * population + territory.size() - 1) / territory.size());
+			temp.setGold((temp.getGold() * population + territory.size() - 1) / territory.size());
+			temp.setScience((temp.getScience() * population + territory.size() - 1) / territory.size());
+			temp.setCulture((temp.getCulture() * population + territory.size() - 1) / territory.size());
+		}
+		cityTotals.addTo(temp);
 	}
 
 	public void manageFood()
@@ -126,6 +138,7 @@ public class CityHub
 		{
 			population++;
 			nextPopulation *= 2;
+			cityTotals.setFood(0);
 		}
 	}
 

@@ -81,6 +81,31 @@ public class Yields
 	{
 		return theYields[4];
 	}
+	
+	public void setFood(int i)
+	{
+		theYields[0] = i;
+	}
+
+	public void setProduction(int i)
+	{
+		theYields[1] = i;
+	}
+
+	public void setGold( int i )
+	{
+		theYields[2] = i;
+	}
+
+	public void setScience( int i)
+	{
+		theYields[3] = i;
+	}
+
+	public void setCulture( int i)
+	{
+		theYields[4] = i;
+	}
 
 	public void addTo(Yields y)
 	{
@@ -102,4 +127,5 @@ public class Yields
 	{
 		return theYields;
 	}
+	
 }
