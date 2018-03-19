@@ -1,5 +1,11 @@
 package CivZero;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.Timer;
+
 import City.CityHub;
 import Gui.Displayer;
 import Map.Generate;
@@ -15,6 +21,8 @@ public class World
 	private int yDim;
 	int tilePixelSideLength;
 	private Tile[][] theWorld;
+	ArrayList<CityHub> citys = new ArrayList<CityHub>();
+	Timer gameTimer;
 	Generate gen;
 	Displayer Dis;
 
@@ -36,12 +44,33 @@ public class World
 		this.yDim = yDim;
 		gen = new Generate(xDim, yDim, tilePixelSideLength, this);
 		setTheWorlds(gen.getGameWorld());
-		theWorld[0][0].setMilitaryUnit(new Scout(0,0,2));
-		theWorld[2][2].setMilitaryUnit(new Scout(2,2,2));
-		theWorld[0][0].setCity(new CityHub(xDim, yDim, this));
+		theWorld[0][0].setMilitaryUnit(new Scout(0, 0, 2));
+		theWorld[2][2].setMilitaryUnit(new Scout(2, 2, 2));
+		CityHub test = new CityHub(xDim, yDim, this);
+		theWorld[0][0].setCity(test);
+		citys.add(test);
 		Dis = new Displayer(xDim, yDim, tilePixelSideLength, this);
+		gameTimer();
+		gameTimer.start();
 	}
-	
+
+	ActionListener cityCollector = new ActionListener()
+	{
+		public void actionPerformed(ActionEvent actionEvent)
+		{
+			for (int i = 0; i < citys.size(); i++)
+			{
+				citys.get(i).collectYeilds();
+			}
+			Dis.getGamepanel().repaint();
+		}
+	};
+
+	public void gameTimer()
+	{
+		gameTimer = new Timer(1000, cityCollector);
+	}
+
 	public void resetReachableTiles()
 	{
 		for (int i = 0; i < xDim; i++)
@@ -55,19 +84,19 @@ public class World
 
 	public void setReachableTiles(int range, int xLoc, int yLoc)
 	{
-		if ( xLoc < 0 )
+		if (xLoc < 0)
 		{
 			xLoc = xLoc + xDim;
 		}
-		if ( xLoc >= xDim )
+		if (xLoc >= xDim)
 		{
 			xLoc = xLoc - xDim;
 		}
-		if ( yLoc < 0 )
+		if (yLoc < 0)
 		{
 			yLoc = yLoc + yDim;
 		}
-		if ( yLoc >= yDim )
+		if (yLoc >= yDim)
 		{
 			yLoc = yLoc - yDim;
 		}
@@ -77,23 +106,23 @@ public class World
 			return;
 		}
 		range--;
-		setReachableTiles(range, xLoc + 1, yLoc );
+		setReachableTiles(range, xLoc + 1, yLoc);
 		setReachableTiles(range, xLoc, yLoc + 1);
-		setReachableTiles(range, xLoc, yLoc - 1); 
+		setReachableTiles(range, xLoc, yLoc - 1);
 		setReachableTiles(range, xLoc - 1, yLoc);
 		if (yLoc % 2 == 0)
 		{
-			setReachableTiles(range, xLoc - 1, yLoc + 1); 
+			setReachableTiles(range, xLoc - 1, yLoc + 1);
 			setReachableTiles(range, xLoc - 1, yLoc - 1);
 		}
 		else
 		{
-			setReachableTiles(range, xLoc + 1, yLoc + 1); 
+			setReachableTiles(range, xLoc + 1, yLoc + 1);
 			setReachableTiles(range, xLoc + 1, yLoc - 1);
 		}
 	}
 
-	//getters and setters
+	// getters and setters
 	/**
 	 * gets the numbers of tiles in the X demension
 	 * 
