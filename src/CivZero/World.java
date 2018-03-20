@@ -46,7 +46,7 @@ public class World
 		setTheWorlds(gen.getGameWorld());
 		theWorld[0][0].setMilitaryUnit(new Scout(0, 0, 2));
 		theWorld[2][2].setMilitaryUnit(new Scout(2, 2, 2));
-		CityHub test = new CityHub(xDim, yDim, this);
+		CityHub test = new CityHub(0, 0, this);
 		theWorld[0][0].setCity(test);
 		citys.add(test);
 		Dis = new Displayer(xDim, yDim, tilePixelSideLength, this);

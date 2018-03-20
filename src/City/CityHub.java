@@ -130,6 +130,13 @@ public class CityHub
 			temp.setCulture((temp.getCulture() * population + territory.size() - 1) / territory.size());
 		}
 		cityTotals.addTo(temp);
+		System.out.println(xLoc);
+		cityTotals.addTo(w.getWorld()[xLoc][yLoc].getYield());
+		cityTotals.changeFood(-2 * population);
+		cityTotals.changeGold(3);
+		cityTotals.changeScience(3 + population);
+		cityTotals.changeCulture(3 + (int)(.5 + .5 * population));
+		manageFood();
 	}
 
 	public void manageFood()
@@ -140,6 +147,11 @@ public class CityHub
 			nextPopulation *= 2;
 			cityTotals.setFood(0);
 		}
+	}
+	
+	public void manageCulture()
+	{
+		
 	}
 
 	public void drawMe(int x, int y, int w, Graphics g)
