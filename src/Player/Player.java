@@ -5,19 +5,21 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 import City.CityHub;
+import CivZero.World;
 import Tiles.Tile;
 import Tiles.Yields;
 import Units.Unit;
 
 public class Player
 {
+	World w;
 	String playerName;
 	Color playerColor;
 	ArrayList<CityHub> citys = new ArrayList<CityHub>();
 	ArrayList<Unit> units = new ArrayList<Unit>();
 	ArrayList<Tile> tiles = new ArrayList<Tile>();
 	Yields total = new Yields();
-	public Player(Color startingColor, String startingName)
+	public Player(Color startingColor, String startingName, World w)
 	{
 		playerName = startingName;
 		playerColor = startingColor;
