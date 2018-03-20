@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import CivZero.World;
+import Player.Player;
 import Tiles.Tile;
 import Tiles.Yields;
 
@@ -27,9 +28,11 @@ public class CityHub
 	Yields temp;
 	ArrayList<Tile> territory = new ArrayList<Tile>();
 	ArrayList<Tile> worked = new ArrayList<Tile>();
+	Player owner;
 
-	public CityHub(int xLoc, int yLoc, World w)
+	public CityHub(int xLoc, int yLoc, World w, Player creator)
 	{
+		owner = creator;
 		this.w = w;
 		startingTiles();
 		loadImg("City");
@@ -130,7 +133,6 @@ public class CityHub
 			temp.setCulture((temp.getCulture() * population + territory.size() - 1) / territory.size());
 		}
 		cityTotals.addTo(temp);
-		System.out.println(xLoc);
 		cityTotals.addTo(w.getWorld()[xLoc][yLoc].getYield());
 		cityTotals.changeFood(-2 * population);
 		cityTotals.changeGold(3);
@@ -150,6 +152,11 @@ public class CityHub
 	}
 	
 	public void manageCulture()
+	{
+		
+	}
+	
+	public void manageScience()
 	{
 		
 	}

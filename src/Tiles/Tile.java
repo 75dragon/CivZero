@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import City.CityHub;
 import CivZero.World;
 import Gui.Drawable;
+import Player.Player;
 import Resources.Resources;
 import Units.Unit;
 import Resources.LuxuryResources;
@@ -29,6 +30,7 @@ public class Tile
 	boolean isReachable = false;
 	Color gold = new Color(255, 200, 0);
 	CityHub city = null;
+	Player owner = null;
 
 	/**
 	 * Plain tile constructor
