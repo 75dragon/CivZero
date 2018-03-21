@@ -1,5 +1,6 @@
 package CivZero;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import javax.swing.Timer;
 import City.CityHub;
 import Gui.Displayer;
 import Map.Generate;
+import Player.Player;
 import Tiles.Tile;
 import Units.Scout;
 
@@ -39,6 +41,7 @@ public class World
 	 */
 	World(int xDim, int yDim, int tilePixelSideLength)
 	{
+		Player austin = new Player(Color.RED, "Austin", this);
 		this.tilePixelSideLength = tilePixelSideLength;
 		this.xDim = xDim;
 		this.yDim = yDim;
@@ -46,9 +49,6 @@ public class World
 		setTheWorlds(gen.getGameWorld());
 		theWorld[0][0].setMilitaryUnit(new Scout(0, 0, 2));
 		theWorld[2][2].setMilitaryUnit(new Scout(2, 2, 2));
-		CityHub test = new CityHub(0, 0, this);
-		theWorld[0][0].setCity(test);
-		citys.add(test);
 		Dis = new Displayer(xDim, yDim, tilePixelSideLength, this);
 		gameTimer();
 		gameTimer.start();
@@ -66,6 +66,30 @@ public class World
 		}
 	};
 
+	public boolean foundUnit(Player founder, int xLoc, int yLoc, String type)
+	{
+		if(theWorld[xLoc][yLoc].getMilitaryUnit() != null)
+		{
+			return false;
+		}
+		Scout made = new Scout(xLoc, yLoc, tilePixelSideLength);
+		founder.addUnit(made);
+		theWorld[xLoc][yLoc].setMilitaryUnit(made);
+		return true;
+	}
+	
+	public boolean foundCity(Player founder, int xLoc, int yLoc)
+	{
+		if(theWorld[xLoc][yLoc].getCity() != null)
+		{
+			return false;
+		}
+		CityHub founded = new CityHub(xLoc, yLoc, this, founder);
+		founder.addCity(founded);
+		theWorld[xLoc][yLoc].setCity(founded);
+		return true;
+	}
+	
 	public void gameTimer()
 	{
 		gameTimer = new Timer(1000, cityCollector);

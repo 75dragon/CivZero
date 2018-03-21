@@ -24,6 +24,14 @@ public class Player
 		playerName = startingName;
 		playerColor = startingColor;
 	}
+	public void addCity(CityHub myCity)
+	{
+		citys.add(myCity);
+	}
+	public void addUnit(Unit myUnit)
+	{
+		units.add(myUnit);
+	}
 	public String getPlayerName()
 	{
 		return playerName;
