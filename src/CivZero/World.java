@@ -52,6 +52,7 @@ public class World
 		Dis = new Displayer(xDim, yDim, tilePixelSideLength, this);
 		gameTimer();
 		gameTimer.start();
+		foundCity(austin, 0,0);
 	}
 
 	ActionListener cityCollector = new ActionListener()
@@ -87,6 +88,7 @@ public class World
 		CityHub founded = new CityHub(xLoc, yLoc, this, founder);
 		founder.addCity(founded);
 		theWorld[xLoc][yLoc].setCity(founded);
+		citys.add(founded);
 		return true;
 	}
 	
