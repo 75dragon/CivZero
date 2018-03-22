@@ -6,6 +6,9 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import CivZero.World;
+import Player.Player;
+
 public class Unit
 {
 	int x;
@@ -14,7 +17,8 @@ public class Unit
 	int sight;
 	BufferedImage img;
 	String name;
-
+	Player player;
+	World w;
 	/**
 	 * @param x
 	 *            xCoor
@@ -25,13 +29,15 @@ public class Unit
 	 * @param s
 	 *            name of unit
 	 */
-	public Unit(int x, int y, int w, int movement, String s)
+	public Unit(int x, int y, World w, int movement, String name, Player owner)
 	{
 		this.x = x;
 		this.y = y;
 		this.movement = movement;
-		this.img = scale(loadImg(s), 50, 50);
-		name = s;
+		this.img = scale(loadImg(name), 50, 50);
+		this.name = name;
+		player = owner;
+		this.w = w;
 	}
 
 	public static BufferedImage scale(BufferedImage src, int w, int h)
@@ -96,9 +102,9 @@ public class Unit
 
 	public void drawMe(int x, int y, int wid, Graphics g)
 	{
-
-		g.drawImage(img, x, y, null);
-
+		g.drawImage(img, x + wid / 4, y + wid / 4, null);
+		g.setColor(player.getPlayerColor());
+		g.drawOval( x + wid / 4, y + wid / 4, wid / 2, wid / 2);
 	}
 
 	public int getMovement()
@@ -111,4 +117,14 @@ public class Unit
 		this.movement = movement;
 	}
 	
+	public boolean special()
+	{
+		return false;
+	}
+	
+	public void setLocation(int x, int y)
+	{
+		this.x = x;
+		this.y = y;
+	}
 }

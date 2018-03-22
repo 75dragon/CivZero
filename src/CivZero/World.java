@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.Timer;
 
@@ -13,6 +14,8 @@ import Map.Generate;
 import Player.Player;
 import Tiles.Tile;
 import Units.Scout;
+import Units.Settler;
+import Units.Unit;
 
 public class World
 {
@@ -27,6 +30,7 @@ public class World
 	Timer gameTimer;
 	Generate gen;
 	Displayer Dis;
+	HashMap<String, Unit> holdPrefab = new HashMap<String, Unit>();
 
 	/**
 	 * The hub of everything. Creates the generator to make the map then creates
@@ -47,12 +51,11 @@ public class World
 		this.yDim = yDim;
 		gen = new Generate(xDim, yDim, tilePixelSideLength, this);
 		setTheWorlds(gen.getGameWorld());
-		theWorld[0][0].setMilitaryUnit(new Scout(0, 0, 2));
-		theWorld[2][2].setMilitaryUnit(new Scout(2, 2, 2));
+		//foundUnit(austin, 1,1,"Scout");
+		foundUnit(austin, 2,2,"Settler");
 		Dis = new Displayer(xDim, yDim, tilePixelSideLength, this);
 		gameTimer();
 		gameTimer.start();
-		foundCity(austin, 0,0);
 	}
 
 	ActionListener cityCollector = new ActionListener()
@@ -73,7 +76,7 @@ public class World
 		{
 			return false;
 		}
-		Scout made = new Scout(xLoc, yLoc, tilePixelSideLength);
+		Settler made = new Settler(xLoc, yLoc, this, founder);
 		founder.addUnit(made);
 		theWorld[xLoc][yLoc].setMilitaryUnit(made);
 		return true;

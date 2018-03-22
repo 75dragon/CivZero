@@ -121,11 +121,11 @@ public class Tile
 		g.fillRect(x * width + shift, y * width, width, width);
 		if (city != null)
 		{
-			city.drawMe(x * width + shift  + width / 10 , y * width + width / 10, width, g);
+			city.drawMe(x * width + shift, y * width, width, g);
 		}
 		if (militaryUnit != null)
 		{
-			militaryUnit.drawMe(x * width + shift + width / 4, y * width + width / 4, width, g);
+			militaryUnit.drawMe(x * width + shift, y * width , width, g);
 		}
 		for (int i = 0; i < yield.getFood(); i++)
 		{
@@ -166,10 +166,15 @@ public class Tile
 			if (militaryUnit == null && isReachable)
 			{
 				militaryUnit = world.getWorld()[world.getActiveX()][world.getActiveY()].getMilitaryUnit();
+				militaryUnit.setLocation(x, y);
 				world.getWorld()[world.getActiveX()][world.getActiveY()].setMilitaryUnit(null);
 				world.setActive(false);
 				world.resetReachableTiles();
 				return true;
+			}
+			else if (world.getActiveX() == x && world.getActiveY() == y)
+			{
+				militaryUnit.special();
 			}
 			else
 			{

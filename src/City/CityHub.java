@@ -137,7 +137,7 @@ public class CityHub
 		cityTotals.changeFood(-2 * population);
 		cityTotals.changeGold(3);
 		cityTotals.changeScience(3 + population);
-		cityTotals.changeCulture(3 + (int)(.5 + .5 * population));
+		cityTotals.changeCulture(3 + (int) (.5 + .5 * population));
 		manageFood();
 	}
 
@@ -150,25 +150,27 @@ public class CityHub
 			cityTotals.setFood(0);
 		}
 	}
-	
+
 	public void manageCulture()
 	{
-		
+
 	}
-	
+
 	public void manageScience()
 	{
-		
+
 	}
 
 	public void drawMe(int x, int y, int w, Graphics g)
 	{
-		g.drawImage(img, x, y, null);
+		g.drawImage(img, x + w / 10, y + w / 10, null);
 		g.setColor(Color.BLACK);
-		g.drawString("F: " + cityTotals.getFood(), x + 10, y + 10);
-		g.drawString("P: " + cityTotals.getProduction(), x + 10, y + 20);
-		g.drawString("G: " + cityTotals.getGold(), x + 10, y + 30);
-		g.drawString("S: " + cityTotals.getScience(), x + 10, y + 40);
-		g.drawString("C: " + cityTotals.getCulture(), x + 10, y + 50);
+		g.drawString("F: " + cityTotals.getFood(), x + w / 10 + 10, y + w / 10 + 10);
+		g.drawString("P: " + cityTotals.getProduction(), x + w / 10 + 10, y + w / 10 + 20);
+		g.drawString("G: " + cityTotals.getGold(), x + w / 10 + 10, y + w / 10 + 30);
+		g.drawString("S: " + cityTotals.getScience(), x + w / 10 + 10, y + w / 10 + 40);
+		g.drawString("C: " + cityTotals.getCulture(), x + w / 10 + 10, y + w / 10 + 50);
+		g.setColor(owner.getPlayerColor());
+		g.drawRect(x + 1, y + 1, w - 2, w - 2);
 	}
 }
