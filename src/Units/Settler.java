@@ -5,9 +5,9 @@ import Player.Player;
 
 public class Settler extends Unit
 {
-	public Settler(int xCor, int yCor, World w, Player player)
+	public Settler()
 	{
-		super(xCor, yCor, w, 2, "Settler", player);
+		super(2, "Settler", 50);
 	}
 	
 	@Override
@@ -15,5 +15,13 @@ public class Settler extends Unit
 	{
 		w.foundCity(player, x, y);
 		return true;
+	}
+	
+	@Override
+	public Unit newCopy()
+	{
+		System.out.println("hi");
+		Settler Bob = new Settler();
+		return Bob;
 	}
 }

@@ -158,7 +158,7 @@ public class CityHub
 
 	public void manageScience()
 	{
-
+		
 	}
 
 	public void drawMe(int x, int y, int w, Graphics g)

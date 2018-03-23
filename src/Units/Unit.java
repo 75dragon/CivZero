@@ -19,6 +19,7 @@ public class Unit
 	String name;
 	Player player;
 	World w;
+
 	/**
 	 * @param x
 	 *            xCoor
@@ -29,17 +30,21 @@ public class Unit
 	 * @param s
 	 *            name of unit
 	 */
-	public Unit(int x, int y, World w, int movement, String name, Player owner)
+	public Unit(int movement, String name, int imageScale)
+	{
+		this.movement = movement;
+		this.img = scale(loadImg(name), imageScale, imageScale);
+		this.name = name;
+	}
+
+	public void initiateUnit(int x, int y, Player owner, World w)
 	{
 		this.x = x;
 		this.y = y;
-		this.movement = movement;
-		this.img = scale(loadImg(name), 50, 50);
-		this.name = name;
 		player = owner;
 		this.w = w;
 	}
-
+	
 	public static BufferedImage scale(BufferedImage src, int w, int h)
 	{
 		BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
@@ -104,7 +109,7 @@ public class Unit
 	{
 		g.drawImage(img, x + wid / 4, y + wid / 4, null);
 		g.setColor(player.getPlayerColor());
-		g.drawOval( x + wid / 4, y + wid / 4, wid / 2, wid / 2);
+		g.drawOval(x + wid / 4, y + wid / 4, wid / 2, wid / 2);
 	}
 
 	public int getMovement()
@@ -116,15 +121,31 @@ public class Unit
 	{
 		this.movement = movement;
 	}
-	
+
 	public boolean special()
 	{
 		return false;
 	}
-	
+
 	public void setLocation(int x, int y)
 	{
 		this.x = x;
 		this.y = y;
+	}
+
+	public void setPlayer(Player owner)
+	{
+		player = owner;
+	}
+
+	public void setWorld(World w)
+	{
+		this.w = w;
+	}
+	
+	public Unit newCopy()
+	{
+		System.out.println("shouldbeoverriden");
+		return null;
 	}
 }

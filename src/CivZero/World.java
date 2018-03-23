@@ -30,7 +30,7 @@ public class World
 	Timer gameTimer;
 	Generate gen;
 	Displayer Dis;
-	HashMap<String, Unit> holdPrefab = new HashMap<String, Unit>();
+	HashMap<String, Unit> holdPrefabs = new HashMap<String, Unit>();
 
 	/**
 	 * The hub of everything. Creates the generator to make the map then creates
@@ -45,6 +45,7 @@ public class World
 	 */
 	World(int xDim, int yDim, int tilePixelSideLength)
 	{
+		makePrefabs();
 		Player austin = new Player(Color.RED, "Austin", this);
 		this.tilePixelSideLength = tilePixelSideLength;
 		this.xDim = xDim;
@@ -56,6 +57,12 @@ public class World
 		Dis = new Displayer(xDim, yDim, tilePixelSideLength, this);
 		gameTimer();
 		gameTimer.start();
+	}
+	
+	public void makePrefabs()
+	{
+		holdPrefabs.put("Scout", new Scout());
+		holdPrefabs.put("Settler", new Settler());
 	}
 
 	ActionListener cityCollector = new ActionListener()
@@ -76,7 +83,8 @@ public class World
 		{
 			return false;
 		}
-		Settler made = new Settler(xLoc, yLoc, this, founder);
+		Unit made = holdPrefabs.get(type).newCopy();
+		made.initiateUnit(xLoc, yLoc, founder, this);
 		founder.addUnit(made);
 		theWorld[xLoc][yLoc].setMilitaryUnit(made);
 		return true;

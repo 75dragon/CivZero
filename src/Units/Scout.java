@@ -5,8 +5,16 @@ import Player.Player;
 
 public class Scout extends Unit
 {
-	public Scout(int xCor, int yCor, World w, Player player)
+	public Scout()
 	{
-		super(xCor, yCor, w, 2, "Scout", player);
+		super(2, "Scout", 50);
+	}
+	
+	@Override
+	public Unit newCopy()
+	{
+		System.out.println("hi");
+		Scout Bob = new Scout();
+		return Bob;
 	}
 }
