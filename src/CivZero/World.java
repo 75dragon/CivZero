@@ -12,6 +12,7 @@ import City.CityHub;
 import Gui.Displayer;
 import Map.Generate;
 import Player.Player;
+import Tiles.Terrain;
 import Tiles.Tile;
 import Units.Scout;
 import Units.Settler;
@@ -26,10 +27,10 @@ public class World
 	private int yDim;
 	int tilePixelSideLength;
 	private Tile[][] theWorld;
-	ArrayList<CityHub> citys = new ArrayList<CityHub>();
 	Timer gameTimer;
 	Generate gen;
 	Displayer Dis;
+	ArrayList<CityHub> citys = new ArrayList<CityHub>();
 	HashMap<String, Unit> holdPrefabs = new HashMap<String, Unit>();
 
 	/**
@@ -52,7 +53,6 @@ public class World
 		this.yDim = yDim;
 		gen = new Generate(xDim, yDim, tilePixelSideLength, this);
 		setTheWorlds(gen.getGameWorld());
-		//foundUnit(austin, 1,1,"Scout");
 		foundUnit(austin, 2,2,"Settler");
 		Dis = new Displayer(xDim, yDim, tilePixelSideLength, this);
 		gameTimer();
@@ -92,7 +92,7 @@ public class World
 	
 	public boolean foundCity(Player founder, int xLoc, int yLoc)
 	{
-		if(theWorld[xLoc][yLoc].getCity() != null)
+		if(theWorld[xLoc][yLoc].getCity() != null || theWorld[xLoc][yLoc].getT() == Terrain.WATER)
 		{
 			return false;
 		}

@@ -125,7 +125,7 @@ public class Tile
 		}
 		if (militaryUnit != null)
 		{
-			militaryUnit.drawMe(x * width + shift, y * width , width, g);
+			militaryUnit.drawMe(x * width + shift, y * width, width, g);
 		}
 		for (int i = 0; i < yield.getFood(); i++)
 		{
@@ -141,6 +141,11 @@ public class Tile
 		{
 			g.setColor(gold);
 			g.fillOval((int) ((x + .5) * width) + i * 7 + shift, y * width + 14 + (int) (width * .5), 5, 5);
+		}
+		if (owner != null)
+		{
+			g.setColor(owner.getPlayerColor());
+			g.drawRect(x * width + shift + 1, y * width + 1, width - 2, width - 2);
 		}
 		g.setColor(Color.black);
 		g.drawRect(x * width + shift, y * width, width, width);
@@ -229,5 +234,36 @@ public class Tile
 	{
 		this.city = city;
 	}
+
+	public Player getOwner()
+	{
+		return owner;
+	}
+
+	public void setOwner(Player owner)
+	{
+		this.owner = owner;
+	}
+
+	public Terrain getT()
+	{
+		return t;
+	}
+
+	public void setT(Terrain t)
+	{
+		this.t = t;
+	}
+
+	public Biome getB()
+	{
+		return b;
+	}
+
+	public void setB(Biome b)
+	{
+		this.b = b;
+	}
+	
 	
 }

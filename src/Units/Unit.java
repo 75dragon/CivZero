@@ -131,6 +131,7 @@ public class Unit
 	{
 		this.x = x;
 		this.y = y;
+		System.out.println(x + " " + y);
 	}
 
 	public void setPlayer(Player owner)

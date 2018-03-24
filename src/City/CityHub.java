@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import CivZero.World;
@@ -21,6 +22,7 @@ public class CityHub
 	int yLoc;
 	int population;
 	int nextPopulation = 2;
+	int nextCulture = 20;
 	BufferedImage img;
 	World w;
 	Tile cityCenter;
@@ -29,16 +31,17 @@ public class CityHub
 	ArrayList<Tile> territory = new ArrayList<Tile>();
 	ArrayList<Tile> worked = new ArrayList<Tile>();
 	Player owner;
+	Random rand = new Random();
 
 	public CityHub(int xLoc, int yLoc, World w, Player creator)
 	{
 		owner = creator;
 		this.w = w;
-		startingTiles();
 		loadImg("City");
 		population = 1;
 		this.xLoc = xLoc;
 		this.yLoc = yLoc;
+		startingTiles();
 		cityTotals = new Yields();
 		img = scale(img, 70, 70);
 		temp = new Yields();
@@ -100,21 +103,29 @@ public class CityHub
 		int xLocPlus = (xLoc + 1) % w.getxDim();
 		int yLocMinus = (yLoc - 1 + w.getyDim()) % w.getyDim();
 		int yLocPlus = (yLoc + 1) % w.getxDim();
-		territory.add(w.getWorld()[xLoc][yLoc]);
-		territory.add(w.getWorld()[xLocPlus][yLoc]);
-		territory.add(w.getWorld()[xLocMinus][yLoc]);
-		territory.add(w.getWorld()[xLoc][yLocPlus]);
-		territory.add(w.getWorld()[xLoc][yLocMinus]);
+		getTile(xLoc,yLoc);
+		getTile(xLocPlus,yLoc);
+		getTile(xLocMinus,yLoc);
+		getTile(xLoc,yLocPlus);
+		getTile(xLoc,yLocMinus);
 		if (yLoc % 2 == 0)
 		{
-			territory.add(w.getWorld()[xLocMinus][yLocPlus]);
-			territory.add(w.getWorld()[xLocMinus][yLocMinus]);
+			getTile(xLocMinus,yLocPlus);
+			getTile(xLocMinus,yLocMinus);
 		}
 		else
 		{
-			territory.add(w.getWorld()[xLocPlus][yLocPlus]);
-			territory.add(w.getWorld()[xLocPlus][yLocMinus]);
+			getTile(xLocPlus,yLocPlus);
+			getTile(xLocPlus,yLocMinus);
 		}
+	}
+	
+	public boolean getTile( int xl, int yl)
+	{
+		System.out.println(xl + " " + yl);
+		territory.add(w.getWorld()[xl][yl]);
+		w.getWorld()[xl][yl].setOwner(owner);
+		return true;
 	}
 
 	public void collectYeilds()
@@ -139,6 +150,7 @@ public class CityHub
 		cityTotals.changeScience(3 + population);
 		cityTotals.changeCulture(3 + (int) (.5 + .5 * population));
 		manageFood();
+		manageCulture();
 	}
 
 	public void manageFood()
@@ -153,12 +165,38 @@ public class CityHub
 
 	public void manageCulture()
 	{
-
+		if (cityTotals.getCulture() > nextCulture)
+		{
+			expandBorders();
+			nextCulture *= 2;
+			cityTotals.setCulture(0);
+		}
+	}
+	
+	public void expandBorders()
+	{
+		int holdy = rand.nextInt(5) - 2;
+		int holdx = rand.nextInt(5 - Math.abs(holdy));
+		if (holdx % 2 == 0)
+		{
+			holdx = rand.nextInt(5 - Math.abs(holdy));
+			holdx = holdx - holdx / 2;
+		}
+		else if (yLoc % 2 == 0)
+		{
+			holdx = rand.nextInt(5 - Math.abs(holdy));
+			holdx = holdx - holdx / 2 - 1;
+		}
+		else
+		{
+			holdx = rand.nextInt(5 - Math.abs(holdy));
+			holdx = holdx - holdx / 2;
+		}
+		getTile(xLoc + holdx, yLoc + holdy);
 	}
 
 	public void manageScience()
 	{
-		
 	}
 
 	public void drawMe(int x, int y, int w, Graphics g)
