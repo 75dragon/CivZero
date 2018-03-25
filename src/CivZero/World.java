@@ -114,7 +114,7 @@ public class World
 		{
 			for (int j = 0; j < yDim; j++)
 			{
-				theWorld[i][j].setReachable(false);
+				theWorld[i][j].setReachable(-1);
 			}
 		}
 	}
@@ -137,7 +137,7 @@ public class World
 		{
 			yLoc = yLoc - yDim;
 		}
-		theWorld[xLoc][yLoc].setReachable(true);
+		theWorld[xLoc][yLoc].setReachable(range);
 		if (range == 0)
 		{
 			return;

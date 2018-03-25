@@ -175,24 +175,32 @@ public class CityHub
 	
 	public void expandBorders()
 	{
-		int holdy = rand.nextInt(5) - 2;
-		int holdx = rand.nextInt(5 - Math.abs(holdy));
-		if (holdx % 2 == 0)
+		int citySize = 2;
+		if (territory.size() >= 37)
 		{
-			holdx = rand.nextInt(5 - Math.abs(holdy));
-			holdx = holdx - holdx / 2;
+			return;
 		}
-		else if (yLoc % 2 == 0)
+		if (territory.size() >= 19)
 		{
-			holdx = rand.nextInt(5 - Math.abs(holdy));
-			holdx = holdx - holdx / 2 - 1;
+			citySize = 3;
 		}
-		else
+		ArrayList<Integer> holdx = new ArrayList<Integer>();
+		ArrayList<Integer> holdy = new ArrayList<Integer>();
+		w.setReachableTiles(citySize, xLoc, yLoc);
+		for(int i = 0; i < w.getxDim(); i++)
 		{
-			holdx = rand.nextInt(5 - Math.abs(holdy));
-			holdx = holdx - holdx / 2;
+			for (int j = 0; j < w.getyDim(); j++)
+			{
+				if(w.getWorld()[i][j].getReachable() == 0 && w.getWorld()[i][j].getOwner() == null)
+				{
+					holdx.add(i);
+					holdy.add(j);
+				}
+			}
 		}
-		getTile(xLoc + holdx, yLoc + holdy);
+		int holdR = rand.nextInt(holdx.size());
+		getTile(holdx.get(holdR), holdy.get(holdR));
+		w.resetReachableTiles();
 	}
 
 	public void manageScience()
