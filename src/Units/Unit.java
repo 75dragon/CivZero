@@ -44,7 +44,7 @@ public class Unit
 		player = owner;
 		this.w = w;
 	}
-	
+
 	public static BufferedImage scale(BufferedImage src, int w, int h)
 	{
 		BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
@@ -139,11 +139,16 @@ public class Unit
 		player = owner;
 	}
 
+	public Player getPlayer()
+	{
+		return player;
+	}
+
 	public void setWorld(World w)
 	{
 		this.w = w;
 	}
-	
+
 	public Unit newCopy()
 	{
 		System.out.println("shouldbeoverriden");

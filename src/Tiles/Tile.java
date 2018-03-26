@@ -180,6 +180,7 @@ public class Tile
 			else if (world.getActiveX() == x && world.getActiveY() == y)
 			{
 				militaryUnit.special();
+				world.resetReachableTiles();
 			}
 			else
 			{
@@ -264,6 +265,5 @@ public class Tile
 	{
 		this.b = b;
 	}
-	
-	
+
 }

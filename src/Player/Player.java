@@ -19,45 +19,60 @@ public class Player
 	ArrayList<Unit> units = new ArrayList<Unit>();
 	ArrayList<Tile> tiles = new ArrayList<Tile>();
 	Yields total = new Yields();
+
 	public Player(Color startingColor, String startingName, World w)
 	{
 		playerName = startingName;
 		playerColor = startingColor;
 	}
+
 	public void addCity(CityHub myCity)
 	{
 		citys.add(myCity);
 	}
+
 	public void addUnit(Unit myUnit)
 	{
 		units.add(myUnit);
 	}
+
+	public void removeUnit(Unit getOut)
+	{
+		units.remove(getOut);
+	}
+
 	public String getPlayerName()
 	{
 		return playerName;
 	}
+
 	public Color getPlayerColor()
 	{
 		return playerColor;
 	}
+
 	public ArrayList<CityHub> getCitys()
 	{
 		return citys;
 	}
+
 	public ArrayList<Unit> getUnits()
 	{
 		return units;
 	}
+
 	public ArrayList<Tile> getTiles()
 	{
 		return tiles;
 	}
+
 	public Yields getTotal()
 	{
 		return total;
 	}
+
 	public void drawMe(Graphics g)
 	{
-		
+
 	}
 }

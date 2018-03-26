@@ -103,24 +103,24 @@ public class CityHub
 		int xLocPlus = (xLoc + 1) % w.getxDim();
 		int yLocMinus = (yLoc - 1 + w.getyDim()) % w.getyDim();
 		int yLocPlus = (yLoc + 1) % w.getxDim();
-		getTile(xLoc,yLoc);
-		getTile(xLocPlus,yLoc);
-		getTile(xLocMinus,yLoc);
-		getTile(xLoc,yLocPlus);
-		getTile(xLoc,yLocMinus);
+		getTile(xLoc, yLoc);
+		getTile(xLocPlus, yLoc);
+		getTile(xLocMinus, yLoc);
+		getTile(xLoc, yLocPlus);
+		getTile(xLoc, yLocMinus);
 		if (yLoc % 2 == 0)
 		{
-			getTile(xLocMinus,yLocPlus);
-			getTile(xLocMinus,yLocMinus);
+			getTile(xLocMinus, yLocPlus);
+			getTile(xLocMinus, yLocMinus);
 		}
 		else
 		{
-			getTile(xLocPlus,yLocPlus);
-			getTile(xLocPlus,yLocMinus);
+			getTile(xLocPlus, yLocPlus);
+			getTile(xLocPlus, yLocMinus);
 		}
 	}
-	
-	public boolean getTile( int xl, int yl)
+
+	public boolean getTile(int xl, int yl)
 	{
 		System.out.println(xl + " " + yl);
 		territory.add(w.getWorld()[xl][yl]);
@@ -172,7 +172,7 @@ public class CityHub
 			cityTotals.setCulture(0);
 		}
 	}
-	
+
 	public void expandBorders()
 	{
 		int citySize = 2;
@@ -187,11 +187,11 @@ public class CityHub
 		ArrayList<Integer> holdx = new ArrayList<Integer>();
 		ArrayList<Integer> holdy = new ArrayList<Integer>();
 		w.setReachableTiles(citySize, xLoc, yLoc);
-		for(int i = 0; i < w.getxDim(); i++)
+		for (int i = 0; i < w.getxDim(); i++)
 		{
 			for (int j = 0; j < w.getyDim(); j++)
 			{
-				if(w.getWorld()[i][j].getReachable() == 0 && w.getWorld()[i][j].getOwner() == null)
+				if (w.getWorld()[i][j].getReachable() == 0 && w.getWorld()[i][j].getOwner() == null)
 				{
 					holdx.add(i);
 					holdy.add(j);
