@@ -47,7 +47,7 @@ public class World
 	World(int xDim, int yDim, int tilePixelSideLength)
 	{
 		makePrefabs();
-		Player austin = new Player(Color.RED, "Austin", this);
+		Player austin = new Player(new Color(120,60,240), "Austin", this);
 		this.tilePixelSideLength = tilePixelSideLength;
 		this.xDim = xDim;
 		this.yDim = yDim;

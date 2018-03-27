@@ -103,25 +103,39 @@ public class CityHub
 		int xLocPlus = (xLoc + 1) % w.getxDim();
 		int yLocMinus = (yLoc - 1 + w.getyDim()) % w.getyDim();
 		int yLocPlus = (yLoc + 1) % w.getxDim();
-		getTile(xLoc,yLoc);
-		getTile(xLocPlus,yLoc);
-		getTile(xLocMinus,yLoc);
-		getTile(xLoc,yLocPlus);
-		getTile(xLoc,yLocMinus);
+		getTile(xLoc, yLoc);
+		getTile(xLocPlus, yLoc);
+		getTile(xLocMinus, yLoc);
+		getTile(xLoc, yLocPlus);
+		getTile(xLoc, yLocMinus);
 		if (yLoc % 2 == 0)
 		{
-			getTile(xLocMinus,yLocPlus);
-			getTile(xLocMinus,yLocMinus);
+			getTile(xLocMinus, yLocPlus);
+			getTile(xLocMinus, yLocMinus);
 		}
 		else
 		{
-			getTile(xLocPlus,yLocPlus);
-			getTile(xLocPlus,yLocMinus);
+			getTile(xLocPlus, yLocPlus);
+			getTile(xLocPlus, yLocMinus);
 		}
 	}
-	
-	public boolean getTile( int xl, int yl)
+
+	/**
+	 * Grabs a tile peacefully to the city if its avalible. Places it into the
+	 * territory of this city, and sets its owner to this player.
+	 * 
+	 * @param xl
+	 *            xLoc
+	 * @param yl
+	 *            yLoc
+	 * @return if you have successfully obtained the tile
+	 */
+	public boolean getTile(int xl, int yl)
 	{
+		if (w.getWorld()[xl][yl].getOwner() != null)
+		{
+			return false;
+		}
 		System.out.println(xl + " " + yl);
 		territory.add(w.getWorld()[xl][yl]);
 		w.getWorld()[xl][yl].setOwner(owner);
@@ -172,7 +186,7 @@ public class CityHub
 			cityTotals.setCulture(0);
 		}
 	}
-	
+
 	public void expandBorders()
 	{
 		int holdy = rand.nextInt(5) - 2;
@@ -185,12 +199,12 @@ public class CityHub
 		else if (yLoc % 2 == 0)
 		{
 			holdx = rand.nextInt(5 - Math.abs(holdy));
-			holdx = holdx - holdx / 2 - 1;
+			holdx = holdx - (int)((holdx + .5)/2);
 		}
 		else
 		{
 			holdx = rand.nextInt(5 - Math.abs(holdy));
-			holdx = holdx - holdx / 2;
+			holdx = holdx - holdx / 2 - 1;
 		}
 		getTile(xLoc + holdx, yLoc + holdy);
 	}
