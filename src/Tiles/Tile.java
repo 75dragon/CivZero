@@ -146,6 +146,9 @@ public class Tile
 		{
 			g.setColor(owner.getPlayerColor());
 			g.drawRect(x * width + shift + 1, y * width + 1, width - 2, width - 2);
+			g.drawRect(x * width + shift + 2, y * width + 2, width - 4, width - 4);
+			g.drawRect(x * width + shift + 3, y * width + 3, width - 6, width - 6);
+			g.drawRect(x * width + shift + 4, y * width + 4, width - 8, width - 8);
 		}
 		g.setColor(Color.black);
 		g.drawRect(x * width + shift, y * width, width, width);

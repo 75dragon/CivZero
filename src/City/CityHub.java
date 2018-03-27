@@ -232,5 +232,8 @@ public class CityHub
 		g.drawString("C: " + cityTotals.getCulture(), x + w / 10 + 10, y + w / 10 + 50);
 		g.setColor(owner.getPlayerColor());
 		g.drawRect(x + 1, y + 1, w - 2, w - 2);
+		g.drawRect(x + 2, y + 2, w - 4, w - 4);
+		g.drawRect(x + 3, y + 3, w - 6, w - 6);
+		g.drawRect(x + 4, y + 4, w - 8, w - 8);
 	}
 }
