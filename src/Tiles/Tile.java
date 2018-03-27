@@ -27,7 +27,7 @@ public class Tile
 	ArrayList<YieldModifier> ym;
 	Color color;
 	int width;
-	boolean isReachable = false;
+	int isReachable = -1;
 	Color gold = new Color(255, 200, 0);
 	CityHub city = null;
 	Player owner = null;
@@ -114,7 +114,7 @@ public class Tile
 	public void drawMe(Graphics g)
 	{
 		g.setColor(t.getCol());
-		if (isReachable)
+		if (isReachable != -1)
 		{
 			g.setColor(Color.BLACK);
 		}
@@ -168,7 +168,7 @@ public class Tile
 		// if there is a current active unit
 		if (world.isActive())
 		{
-			if (militaryUnit == null && isReachable)
+			if (militaryUnit == null && isReachable != -1)
 			{
 				militaryUnit = world.getWorld()[world.getActiveX()][world.getActiveY()].getMilitaryUnit();
 				militaryUnit.setLocation(x, y);
@@ -180,6 +180,7 @@ public class Tile
 			else if (world.getActiveX() == x && world.getActiveY() == y)
 			{
 				militaryUnit.special();
+				world.resetReachableTiles();
 			}
 			else
 			{
@@ -200,12 +201,12 @@ public class Tile
 	}
 
 	// getters and setters
-	public void setReachable(Boolean reach)
+	public void setReachable(int reach)
 	{
 		isReachable = reach;
 	}
 
-	public boolean getReachable()
+	public int getReachable()
 	{
 		return isReachable;
 	}
@@ -264,6 +265,5 @@ public class Tile
 	{
 		this.b = b;
 	}
-	
-	
+
 }

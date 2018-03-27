@@ -53,12 +53,12 @@ public class World
 		this.yDim = yDim;
 		gen = new Generate(xDim, yDim, tilePixelSideLength, this);
 		setTheWorlds(gen.getGameWorld());
-		foundUnit(austin, 2,2,"Settler");
+		foundUnit(austin, 2, 2, "Settler");
 		Dis = new Displayer(xDim, yDim, tilePixelSideLength, this);
 		gameTimer();
 		gameTimer.start();
 	}
-	
+
 	public void makePrefabs()
 	{
 		holdPrefabs.put("Scout", new Scout());
@@ -79,7 +79,7 @@ public class World
 
 	public boolean foundUnit(Player founder, int xLoc, int yLoc, String type)
 	{
-		if(theWorld[xLoc][yLoc].getMilitaryUnit() != null)
+		if (theWorld[xLoc][yLoc].getMilitaryUnit() != null)
 		{
 			return false;
 		}
@@ -89,10 +89,16 @@ public class World
 		theWorld[xLoc][yLoc].setMilitaryUnit(made);
 		return true;
 	}
-	
+
+	public void removeUnit(Unit toRemove)
+	{
+		theWorld[toRemove.getX()][toRemove.getY()].setMilitaryUnit(null);
+		toRemove.getPlayer().removeUnit(toRemove);
+	}
+
 	public boolean foundCity(Player founder, int xLoc, int yLoc)
 	{
-		if(theWorld[xLoc][yLoc].getCity() != null || theWorld[xLoc][yLoc].getT() == Terrain.WATER)
+		if (theWorld[xLoc][yLoc].getCity() != null || theWorld[xLoc][yLoc].getT() == Terrain.WATER)
 		{
 			return false;
 		}
@@ -102,7 +108,7 @@ public class World
 		citys.add(founded);
 		return true;
 	}
-	
+
 	public void gameTimer()
 	{
 		gameTimer = new Timer(1000, cityCollector);
@@ -114,7 +120,7 @@ public class World
 		{
 			for (int j = 0; j < yDim; j++)
 			{
-				theWorld[i][j].setReachable(false);
+				theWorld[i][j].setReachable(-1);
 			}
 		}
 	}
@@ -137,7 +143,7 @@ public class World
 		{
 			yLoc = yLoc - yDim;
 		}
-		theWorld[xLoc][yLoc].setReachable(true);
+		theWorld[xLoc][yLoc].setReachable(range);
 		if (range == 0)
 		{
 			return;

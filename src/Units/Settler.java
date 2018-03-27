@@ -9,14 +9,15 @@ public class Settler extends Unit
 	{
 		super(2, "Settler", 50);
 	}
-	
+
 	@Override
 	public boolean special()
 	{
 		w.foundCity(player, x, y);
+		w.removeUnit(this);
 		return true;
 	}
-	
+
 	@Override
 	public Unit newCopy()
 	{
