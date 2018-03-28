@@ -152,6 +152,8 @@ public class CityHub
 		}
 		for (int p = 0; p < population; p++)
 		{
+			if (findBig.size() > 0)
+			{
 			for (int i = 0; i < findBig.size(); i++)
 			{
 				if (findBig.get(i).getYield().getFood() * 100 + findBig.get(i).getYield().getProduction() * 10
@@ -163,9 +165,14 @@ public class CityHub
 				}
 			}
 			temp.addTo(findBig.get(index).getYield());
+			System.out.println("Citizen Working Tile: X:" + findBig.get(index).x + " Y: " + findBig.get(index).y);
 			findBig.remove(index);
 			toBeat = 0;
+			}
 		}
+		System.out.println("");
+		System.out.println("");
+		System.out.println("");
 	}
 
 	public void collectYeilds()
