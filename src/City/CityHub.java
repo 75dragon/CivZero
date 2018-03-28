@@ -136,27 +136,42 @@ public class CityHub
 		{
 			return false;
 		}
-		System.out.println(xl + " " + yl);
 		territory.add(w.getWorld()[xl][yl]);
 		w.getWorld()[xl][yl].setOwner(owner);
 		return true;
 	}
 
+	public void foodFocus()
+	{
+		int index = 0;
+		int toBeat = 0;
+		ArrayList<Tile> findBig = new ArrayList<Tile>();
+		for (int i = 0; i < territory.size(); i++)
+		{
+			findBig.add(territory.get(i));
+		}
+		for (int p = 0; p < population; p++)
+		{
+			for (int i = 0; i < findBig.size(); i++)
+			{
+				if (findBig.get(i).getYield().getFood() * 100 + findBig.get(i).getYield().getProduction() * 10
+						+ findBig.get(i).getYield().getGold() * 1 > toBeat)
+				{
+					index = i;
+					toBeat = findBig.get(i).getYield().getFood() * 100 + findBig.get(i).getYield().getProduction() * 10
+							+ findBig.get(i).getYield().getGold() * 1;
+				}
+			}
+			temp.addTo(findBig.get(index).getYield());
+			findBig.remove(index);
+			toBeat = 0;
+		}
+	}
+
 	public void collectYeilds()
 	{
 		temp.clear();
-		for (int i = 0; i < territory.size(); i++)
-		{
-			temp.addTo(territory.get(i).getYield());
-		}
-		if (population < territory.size())
-		{
-			temp.setFood((temp.getFood() * population + territory.size() - 1) / territory.size());
-			temp.setProduction((temp.getProduction() * population + territory.size() - 1) / territory.size());
-			temp.setGold((temp.getGold() * population + territory.size() - 1) / territory.size());
-			temp.setScience((temp.getScience() * population + territory.size() - 1) / territory.size());
-			temp.setCulture((temp.getCulture() * population + territory.size() - 1) / territory.size());
-		}
+		foodFocus();
 		cityTotals.addTo(temp);
 		cityTotals.addTo(w.getWorld()[xLoc][yLoc].getYield());
 		cityTotals.changeFood(-2 * population);
