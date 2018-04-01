@@ -157,13 +157,15 @@ public class CityHub
 		{
 			temp.addTo(w.getWorld()[(int)PM.getCitizenLocation().get(i).getX()][(int)PM.getCitizenLocation().get(i).getY()].getYield());
 		}
+		temp.changeFood(-2 * (population - 1));
+		temp.changeGold(3);
+		temp.changeScience(3 + population);
+		temp.changeCulture(3 + (int) (.5 + .5 * population));
 		cityTotals.addTo(temp);
-		cityTotals.changeFood(-2 * population);
-		cityTotals.changeGold(3);
-		cityTotals.changeScience(3 + population);
-		cityTotals.changeCulture(3 + (int) (.5 + .5 * population));
 		manageFood();
+		manageGold();
 		manageCulture();
+		manageScience();
 	}
 
 	public void manageFood()
@@ -184,6 +186,7 @@ public class CityHub
 			expandBorders();
 			nextCulture *= 2;
 			cityTotals.setCulture(0);
+			PM.resetPopulation();
 		}
 	}
 
@@ -219,9 +222,13 @@ public class CityHub
 
 	public void manageScience()
 	{
+		owner.getTotal().changeScience(temp.getScience());
 	}
 	
-	
+	public void manageGold()
+	{
+		owner.getTotal().changeGold(temp.getGold());
+	}
 
 	public int getPopulation()
 	{

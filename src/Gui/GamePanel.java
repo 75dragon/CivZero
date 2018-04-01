@@ -42,9 +42,9 @@ public class GamePanel extends JPanel
 
 	public void setYTranslate(int y)
 	{
-		if (y < 0)
+		if (y < -40)
 		{
-			y = 0;
+			y = -40;
 		}
 		if (y > yDim - this.getHeight())
 		{
@@ -75,6 +75,11 @@ public class GamePanel extends JPanel
 			{
 				w.getWorld()[i][j].drawMe(g);
 			}
+		}
+		g.translate(xTranslate, yTranslate);
+		for (int i = 0; i < w.getPlayers().size(); i++)
+		{
+			w.getPlayers().get(i).drawMe(g);
 		}
 	}
 }

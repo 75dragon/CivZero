@@ -207,6 +207,7 @@ public class Tile
 			{
 				militaryUnit.special();
 				world.resetReachableTiles();
+				return true;
 			}
 			else
 			{
@@ -321,7 +322,4 @@ public class Tile
 	{
 		this.y = y;
 	}
-	
-	
-
 }

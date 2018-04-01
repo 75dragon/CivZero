@@ -32,8 +32,8 @@ public class PopulationManager
 					+ findBig.get(i).getYield().getGold() * 1 > toBeat)
 			{
 				index = i;
-				toBeat = findBig.get(i).getYield().getFood() * 100 + findBig.get(i).getYield().getProduction() * 10
-						+ findBig.get(i).getYield().getGold() * 1;
+				toBeat = findBig.get(i).getYield().getFood() * 100 + findBig.get(i).getYield().getProduction() * 51
+						+ findBig.get(i).getYield().getGold() * 34;
 			}
 		}
 		findBig.get(index).setPersonWorking(true);
@@ -49,7 +49,7 @@ public class PopulationManager
 	{
 		//clear the population
 		citizenLocation.clear();
-		for(int i = 0; i < home.getTerritory().size(); i++)
+		for(int i = 0; i < home.getTerritory().size() - 1; i++)
 		{
 			home.getTerritory().get(i).setPersonWorking(false);
 		}

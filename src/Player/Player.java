@@ -24,6 +24,7 @@ public class Player
 	{
 		playerName = startingName;
 		playerColor = startingColor;
+		this.w = w;
 	}
 
 	public void addCity(CityHub myCity)
@@ -73,6 +74,11 @@ public class Player
 
 	public void drawMe(Graphics g)
 	{
-
+		g.setColor(Color.WHITE);
+		g.fillRect(0, 0, w.getxDim() * w.getTilePixelSideLength(), 40);
+		g.setColor(playerColor);
+		g.drawString(playerName, 5, 10);
+		g.drawString("Gold: " + total.getGold(), 5, 25);
+		g.drawString("Science: " + total.getScience(), 65, 25);
 	}
 }

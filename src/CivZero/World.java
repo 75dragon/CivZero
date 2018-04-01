@@ -32,6 +32,7 @@ public class World
 	Displayer Dis;
 	ArrayList<CityHub> citys = new ArrayList<CityHub>();
 	HashMap<String, Unit> holdPrefabs = new HashMap<String, Unit>();
+	ArrayList<Player> players = new ArrayList<Player>();
 
 	/**
 	 * The hub of everything. Creates the generator to make the map then creates
@@ -55,6 +56,7 @@ public class World
 		setTheWorlds(gen.getGameWorld());
 		foundUnit(austin, 2, 2, "Settler");
 		Dis = new Displayer(xDim, yDim, tilePixelSideLength, this);
+		players.add(austin);
 		gameTimer();
 		gameTimer.start();
 	}
@@ -242,11 +244,6 @@ public class World
 		return tilePixelSideLength;
 	}
 
-	public void setTilePixelSideLength(int tilePixelSideLength)
-	{
-		this.tilePixelSideLength = tilePixelSideLength;
-	}
-
 	public boolean isActive()
 	{
 		return isActive;
@@ -276,5 +273,12 @@ public class World
 	{
 		this.activeY = activeY;
 	}
+
+	public ArrayList<Player> getPlayers()
+	{
+		return players;
+	}
+	
+	
 
 }
