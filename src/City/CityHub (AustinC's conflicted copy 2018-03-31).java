@@ -2,7 +2,6 @@ package City;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -16,10 +15,6 @@ import Player.Player;
 import Tiles.Tile;
 import Tiles.Yields;
 
-/**
- * @author Austin Cheng
- *
- */
 public class CityHub
 {
 	int HP;
@@ -35,7 +30,6 @@ public class CityHub
 	Yields temp;
 	ArrayList<Tile> territory = new ArrayList<Tile>();
 	ArrayList<Tile> worked = new ArrayList<Tile>();
-	ArrayList<Point> assignment = new ArrayList<Point>();
 	Player owner;
 	Random rand = new Random();
 
@@ -160,21 +154,20 @@ public class CityHub
 		{
 			if (findBig.size() > 0)
 			{
-				for (int i = 0; i < findBig.size(); i++)
+			for (int i = 0; i < findBig.size(); i++)
+			{
+				if (findBig.get(i).getYield().getFood() * 100 + findBig.get(i).getYield().getProduction() * 10
+						+ findBig.get(i).getYield().getGold() * 1 > toBeat)
 				{
-					if (findBig.get(i).getYield().getFood() * 100 + findBig.get(i).getYield().getProduction() * 10
-							+ findBig.get(i).getYield().getGold() * 1 > toBeat)
-					{
-						index = i;
-						toBeat = findBig.get(i).getYield().getFood() * 100
-								+ findBig.get(i).getYield().getProduction() * 10
-								+ findBig.get(i).getYield().getGold() * 1;
-					}
+					index = i;
+					toBeat = findBig.get(i).getYield().getFood() * 100 + findBig.get(i).getYield().getProduction() * 10
+							+ findBig.get(i).getYield().getGold() * 1;
 				}
-				temp.addTo(findBig.get(index).getYield());
-				System.out.println("Citizen Working Tile: X:" + findBig.get(index).x + " Y: " + findBig.get(index).y);
-				findBig.remove(index);
-				toBeat = 0;
+			}
+			temp.addTo(findBig.get(index).getYield());
+			System.out.println("Citizen Working Tile: X:" + findBig.get(index).x + " Y: " + findBig.get(index).y);
+			findBig.remove(index);
+			toBeat = 0;
 			}
 		}
 		System.out.println("");
@@ -248,36 +241,6 @@ public class CityHub
 
 	public void manageScience()
 	{
-	}
-	
-	
-
-	public int getPopulation()
-	{
-		return population;
-	}
-
-	public ArrayList<Tile> getTerritory()
-	{
-		return territory;
-	}
-
-
-	public int getxLoc()
-	{
-		return xLoc;
-	}
-
-
-	public int getyLoc()
-	{
-		return yLoc;
-	}
-
-	
-	public Tile getCityCenter()
-	{
-		return cityCenter;
 	}
 
 	public void drawMe(int x, int y, int w, Graphics g)
