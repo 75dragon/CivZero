@@ -47,6 +47,24 @@ public class PopulationManager
 	
 	public void resetPopulation()
 	{
-		
+		//clear the population
+		citizenLocation.clear();
+		for(int i = 0; i < home.getTerritory().size(); i++)
+		{
+			home.getTerritory().get(i).setPersonWorking(false);
+		}
+		//re-add the population
+		citizenLocation.add(new Point(home.getyLoc(), home.getyLoc()));
+		home.getCityCenter().setPersonWorking(true);
+		for(int i = 0; i < home.getPopulation(); i++)
+		{
+			addPopulation();
+		}
 	}
+
+	public ArrayList<Point> getCitizenLocation()
+	{
+		return citizenLocation;
+	}
+	
 }

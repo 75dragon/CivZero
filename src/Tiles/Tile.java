@@ -2,7 +2,11 @@ package Tiles;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 import City.CityHub;
 import CivZero.World;
@@ -14,6 +18,7 @@ import Resources.LuxuryResources;
 
 public class Tile
 {
+	BufferedImage popImg;
 	boolean personWorking = false;
 	int shift = 0;
 	World world;
@@ -45,6 +50,7 @@ public class Tile
 	 */
 	public Tile(int xLoc, int yLoc, int pixelWidth, Terrain terrain, Biome biome, World world)
 	{
+		loadImg("Population");
 		this.world = world;
 		width = pixelWidth;
 		t = terrain;
@@ -89,6 +95,18 @@ public class Tile
 			ym.add(luxResource);
 		}
 		updateYeilds();
+	}
+	
+	public void loadImg(String pic)
+	{
+		try
+		{
+			popImg = ImageIO.read(getClass().getResourceAsStream(pic + ".png"));
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -159,6 +177,10 @@ public class Tile
 			{
 				((Drawable) ym.get(i)).drawMe(x * width + shift, y * width, width, g);
 			}
+		}
+		if(personWorking)
+		{
+			g.drawImage(popImg, x * (width+ 1) + shift - 26, y * width + 5, null);
 		}
 	}
 
