@@ -38,6 +38,7 @@ public class CityHub
 	ArrayList<Point> assignment = new ArrayList<Point>();
 	Player owner;
 	Random rand = new Random();
+	PopulationManager PM;
 
 	public CityHub(int xLoc, int yLoc, World w, Player creator)
 	{
@@ -51,6 +52,8 @@ public class CityHub
 		cityTotals = new Yields();
 		img = scale(img, 70, 70);
 		temp = new Yields();
+		cityCenter = w.getWorld()[xLoc][yLoc];
+		PM = new PopulationManager(this);
 	}
 
 	/**
@@ -147,47 +150,14 @@ public class CityHub
 		return true;
 	}
 
-	public void foodFocus()
-	{
-		int index = 0;
-		int toBeat = 0;
-		ArrayList<Tile> findBig = new ArrayList<Tile>();
-		for (int i = 0; i < territory.size(); i++)
-		{
-			findBig.add(territory.get(i));
-		}
-		for (int p = 0; p < population; p++)
-		{
-			if (findBig.size() > 0)
-			{
-				for (int i = 0; i < findBig.size(); i++)
-				{
-					if (findBig.get(i).getYield().getFood() * 100 + findBig.get(i).getYield().getProduction() * 10
-							+ findBig.get(i).getYield().getGold() * 1 > toBeat)
-					{
-						index = i;
-						toBeat = findBig.get(i).getYield().getFood() * 100
-								+ findBig.get(i).getYield().getProduction() * 10
-								+ findBig.get(i).getYield().getGold() * 1;
-					}
-				}
-				temp.addTo(findBig.get(index).getYield());
-				System.out.println("Citizen Working Tile: X:" + findBig.get(index).x + " Y: " + findBig.get(index).y);
-				findBig.remove(index);
-				toBeat = 0;
-			}
-		}
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");
-	}
-
 	public void collectYeilds()
 	{
 		temp.clear();
-		foodFocus();
+		for(int i = 0; i < PM.getCitizenLocation().size(); i++)
+		{
+			temp.addTo(w.getWorld()[(int)PM.getCitizenLocation().get(i).getX()][(int)PM.getCitizenLocation().get(i).getY()].getYield());
+		}
 		cityTotals.addTo(temp);
-		cityTotals.addTo(w.getWorld()[xLoc][yLoc].getYield());
 		cityTotals.changeFood(-2 * population);
 		cityTotals.changeGold(3);
 		cityTotals.changeScience(3 + population);
@@ -203,6 +173,7 @@ public class CityHub
 			population++;
 			nextPopulation *= 2;
 			cityTotals.setFood(0);
+			PM.addPopulation();
 		}
 	}
 

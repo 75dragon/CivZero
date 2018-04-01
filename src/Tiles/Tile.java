@@ -180,7 +180,7 @@ public class Tile
 		}
 		if(personWorking)
 		{
-			g.drawImage(popImg, x * (width+ 1) + shift - 26, y * width + 5, null);
+			g.drawImage(popImg, (x + 1) * (width) + shift - 26, y * width + 5, null);
 		}
 	}
 
