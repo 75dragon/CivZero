@@ -6,10 +6,11 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import Buildings.Buildable;
 import CivZero.World;
 import Player.Player;
 
-public class Unit
+public class Unit implements Buildable
 {
 	int x;
 	int y;
@@ -19,6 +20,7 @@ public class Unit
 	String name;
 	Player player;
 	World w;
+	int productionCost;
 
 	/**
 	 * @param x
@@ -30,11 +32,12 @@ public class Unit
 	 * @param s
 	 *            name of unit
 	 */
-	public Unit(int movement, String name, int imageScale)
+	public Unit(int movement, String name, int imageScale, int productionCost)
 	{
 		this.movement = movement;
 		this.img = scale(loadImg(name), imageScale, imageScale);
 		this.name = name;
+		this.productionCost = productionCost;
 	}
 
 	public void initiateUnit(int x, int y, Player owner, World w)
@@ -156,5 +159,11 @@ public class Unit
 	{
 		System.out.println("shouldbeoverriden");
 		return null;
+	}
+
+	@Override
+	public int getProductionCost()
+	{
+		return productionCost;
 	}
 }

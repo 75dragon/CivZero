@@ -7,7 +7,7 @@ public class Settler extends Unit
 {
 	public Settler()
 	{
-		super(2, "Settler", 50);
+		super(2, "Settler", 50, 100);
 	}
 
 	@Override
@@ -21,7 +21,6 @@ public class Settler extends Unit
 	@Override
 	public Unit newCopy()
 	{
-		System.out.println("hi");
 		Settler Bob = new Settler();
 		return Bob;
 	}

@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
+
+import Buildings.Building;
 import CivZero.World;
 import Player.Player;
 import Tiles.Tile;
@@ -33,8 +35,8 @@ public class CityHub
 	Tile cityCenter;
 	Yields cityTotals;
 	Yields temp;
+	ArrayList<Building> buildings = new ArrayList<Building>();
 	ArrayList<Tile> territory = new ArrayList<Tile>();
-	ArrayList<Tile> worked = new ArrayList<Tile>();
 	ArrayList<Point> assignment = new ArrayList<Point>();
 	Player owner;
 	Random rand = new Random();
@@ -106,6 +108,10 @@ public class CityHub
 		return img;
 	}
 
+	public void addBuilding(Building built)
+	{
+		buildings.add(built);
+	}
 	public void startingTiles()
 	{
 		int xLocMinus = (xLoc - 1 + w.getxDim()) % w.getxDim();
@@ -156,6 +162,10 @@ public class CityHub
 		for(int i = 0; i < PM.getCitizenLocation().size(); i++)
 		{
 			temp.addTo(w.getWorld()[(int)PM.getCitizenLocation().get(i).getX()][(int)PM.getCitizenLocation().get(i).getY()].getYield());
+		}
+		for(int i = 0; i < buildings.size(); i++ )
+		{
+			temp.addTo(buildings.get(i).getYeild());
 		}
 		temp.changeFood(-2 * (population - 1));
 		temp.changeGold(3);

@@ -2,16 +2,16 @@ package Buildings;
 
 import Tiles.Yields;
 
-public class Building
+public class Building implements Buildable
 {
 	Yields yield;
-	int production;
+	int productionCost;
 	String name;
 	public Building(String name, Yields benefits, int productionCost)
 	{
 		this.name = name;
 		yield = benefits;
-		production = productionCost;
+		this.productionCost = productionCost;
 	}
 	
 	public Yields getYeild()
@@ -29,8 +29,8 @@ public class Building
 		return name;
 	}
 	
-	public int getProduction()
+	public int getProductionCost()
 	{
-		return production;
+		return productionCost;
 	}
 }
