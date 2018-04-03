@@ -80,5 +80,6 @@ public class Player
 		g.drawString(playerName, 5, 10);
 		g.drawString("Gold: " + total.getGold(), 5, 25);
 		g.drawString("Science: " + total.getScience(), 65, 25);
+		g.drawString("Culture: " + total.getCulture(), 145, 25);
 	}
 }

@@ -7,7 +7,7 @@ public class Grainery extends Building
 
 	public Grainery()
 	{
-		super("Grainery", new Yields(3,0,-1,0,0));
+		super("Grainery", new Yields(3,0,-1,0,0), 75);
 	}
 
 }

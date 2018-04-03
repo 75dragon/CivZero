@@ -207,6 +207,7 @@ public class Tile
 			{
 				militaryUnit.special();
 				world.resetReachableTiles();
+				world.setActive(false);
 				return true;
 			}
 			else

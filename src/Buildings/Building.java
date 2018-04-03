@@ -7,10 +7,11 @@ public class Building
 	Yields yield;
 	int production;
 	String name;
-	public Building(String name, Yields benefits)
+	public Building(String name, Yields benefits, int productionCost)
 	{
 		this.name = name;
 		yield = benefits;
+		production = productionCost;
 	}
 	
 	public Yields getYeild()

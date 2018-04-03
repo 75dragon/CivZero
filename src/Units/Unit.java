@@ -110,6 +110,9 @@ public class Unit
 		g.drawImage(img, x + wid / 4, y + wid / 4, null);
 		g.setColor(player.getPlayerColor());
 		g.drawOval(x + wid / 4, y + wid / 4, wid / 2, wid / 2);
+		g.drawOval(x - 1 + wid / 4, y - 1 + wid / 4, wid / 2 + 2, wid / 2 + 2);
+		g.drawOval(x - 2 + wid / 4, y - 2 + wid / 4, wid / 2 + 4, wid / 2 + 4);
+		g.drawOval(x - 3 + wid / 4, y - 3 + wid / 4, wid / 2 + 6, wid / 2 + 6);
 	}
 
 	public int getMovement()

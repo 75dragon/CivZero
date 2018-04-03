@@ -181,6 +181,7 @@ public class CityHub
 
 	public void manageCulture()
 	{
+		owner.getTotal().changeCulture(temp.getCulture());
 		if (cityTotals.getCulture() > nextCulture)
 		{
 			expandBorders();
