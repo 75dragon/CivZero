@@ -19,6 +19,7 @@ public class Player
 	ArrayList<Unit> units = new ArrayList<Unit>();
 	ArrayList<Tile> tiles = new ArrayList<Tile>();
 	Yields total = new Yields();
+	CityHub activeCity;
 
 	public Player(Color startingColor, String startingName, World w)
 	{

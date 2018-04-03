@@ -12,6 +12,7 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
+import Buildings.Buildable;
 import Buildings.Building;
 import CivZero.World;
 import Player.Player;
@@ -35,6 +36,7 @@ public class CityHub
 	Tile cityCenter;
 	Yields cityTotals;
 	Yields temp;
+	ArrayList<Buildable> canBuild = new ArrayList<Buildable>();
 	ArrayList<Building> buildings = new ArrayList<Building>();
 	ArrayList<Tile> territory = new ArrayList<Tile>();
 	ArrayList<Point> assignment = new ArrayList<Point>();
@@ -286,9 +288,14 @@ public class CityHub
 
 	public void clickOn()
 	{
-
+		
 	}
 
+	public void drawBuildables(Graphics g)
+	{
+		g.setColor(Color.WHITE);
+		g.fillRect(w.getxDim() * w.getTilePixelSideLength() - 100, 0, w.getxDim() * w.getTilePixelSideLength(), w.getActiveY() * w.getTilePixelSideLength());
+	}
 	public void drawMe(int x, int y, int w, Graphics g)
 	{
 		g.drawImage(img, x + w / 10, y + w / 10, null);
