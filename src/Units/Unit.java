@@ -161,6 +161,11 @@ public class Unit implements Buildable
 		return null;
 	}
 
+	public String getName()
+	{
+		return name;
+	}
+
 	@Override
 	public int getProductionCost()
 	{

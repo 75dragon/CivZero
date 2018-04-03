@@ -9,14 +9,14 @@ public class PopulationManager
 {
 	CityHub home;
 	ArrayList<Point> citizenLocation = new ArrayList<Point>();
-	
+
 	public PopulationManager(CityHub city)
 	{
 		home = city;
 		citizenLocation.add(new Point(home.getyLoc(), home.getyLoc()));
 		home.getCityCenter().setPersonWorking(true);
 	}
-	
+
 	public void addPopulation()
 	{
 		int index = 0;
@@ -28,8 +28,8 @@ public class PopulationManager
 		}
 		for (int i = 0; i < findBig.size(); i++)
 		{
-			if (!findBig.get(i).isPersonWorking() && findBig.get(i).getYield().getFood() * 100 + findBig.get(i).getYield().getProduction() * 10
-					+ findBig.get(i).getYield().getGold() * 1 > toBeat)
+			if (!findBig.get(i).isPersonWorking() && findBig.get(i).getYield().getFood() * 100
+					+ findBig.get(i).getYield().getProduction() * 10 + findBig.get(i).getYield().getGold() * 1 > toBeat)
 			{
 				index = i;
 				toBeat = findBig.get(i).getYield().getFood() * 100 + findBig.get(i).getYield().getProduction() * 51
@@ -39,24 +39,24 @@ public class PopulationManager
 		findBig.get(index).setPersonWorking(true);
 		citizenLocation.add(new Point(findBig.get(index).getX(), findBig.get(index).getY()));
 	}
-	
+
 	public void foodFocus()
 	{
-		
+
 	}
-	
+
 	public void resetPopulation()
 	{
-		//clear the population
+		// clear the population
 		citizenLocation.clear();
-		for(int i = 0; i < home.getTerritory().size() - 1; i++)
+		for (int i = 0; i < home.getTerritory().size() - 1; i++)
 		{
 			home.getTerritory().get(i).setPersonWorking(false);
 		}
-		//re-add the population
+		// re-add the population
 		citizenLocation.add(new Point(home.getyLoc(), home.getyLoc()));
 		home.getCityCenter().setPersonWorking(true);
-		for(int i = 0; i < home.getPopulation(); i++)
+		for (int i = 0; i < home.getPopulation(); i++)
 		{
 			addPopulation();
 		}
@@ -66,5 +66,5 @@ public class PopulationManager
 	{
 		return citizenLocation;
 	}
-	
+
 }

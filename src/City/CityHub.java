@@ -112,6 +112,7 @@ public class CityHub
 	{
 		buildings.add(built);
 	}
+
 	public void startingTiles()
 	{
 		int xLocMinus = (xLoc - 1 + w.getxDim()) % w.getxDim();
@@ -159,11 +160,12 @@ public class CityHub
 	public void collectYeilds()
 	{
 		temp.clear();
-		for(int i = 0; i < PM.getCitizenLocation().size(); i++)
+		for (int i = 0; i < PM.getCitizenLocation().size(); i++)
 		{
-			temp.addTo(w.getWorld()[(int)PM.getCitizenLocation().get(i).getX()][(int)PM.getCitizenLocation().get(i).getY()].getYield());
+			temp.addTo(w.getWorld()[(int) PM.getCitizenLocation().get(i).getX()][(int) PM.getCitizenLocation().get(i)
+					.getY()].getYield());
 		}
-		for(int i = 0; i < buildings.size(); i++ )
+		for (int i = 0; i < buildings.size(); i++)
 		{
 			temp.addTo(buildings.get(i).getYeild());
 		}
@@ -173,9 +175,15 @@ public class CityHub
 		temp.changeCulture(3 + (int) (.5 + .5 * population));
 		cityTotals.addTo(temp);
 		manageFood();
+		manageProduction();
 		manageGold();
 		manageCulture();
 		manageScience();
+	}
+
+	public void manageProduction()
+	{
+
 	}
 
 	public void manageFood()
@@ -235,7 +243,7 @@ public class CityHub
 	{
 		owner.getTotal().changeScience(temp.getScience());
 	}
-	
+
 	public void manageGold()
 	{
 		owner.getTotal().changeGold(temp.getGold());
@@ -251,22 +259,34 @@ public class CityHub
 		return territory;
 	}
 
-
 	public int getxLoc()
 	{
 		return xLoc;
 	}
-
 
 	public int getyLoc()
 	{
 		return yLoc;
 	}
 
-	
 	public Tile getCityCenter()
 	{
 		return cityCenter;
+	}
+
+	public World getWorld()
+	{
+		return w;
+	}
+
+	public Player getPlayer()
+	{
+		return owner;
+	}
+
+	public void clickOn()
+	{
+
 	}
 
 	public void drawMe(int x, int y, int w, Graphics g)

@@ -96,7 +96,7 @@ public class Tile
 		}
 		updateYeilds();
 	}
-	
+
 	public void loadImg(String pic)
 	{
 		try
@@ -178,7 +178,7 @@ public class Tile
 				((Drawable) ym.get(i)).drawMe(x * width + shift, y * width, width, g);
 			}
 		}
-		if(personWorking)
+		if (personWorking)
 		{
 			g.drawImage(popImg, (x + 1) * (width) + shift - 26, y * width + 5, null);
 		}
