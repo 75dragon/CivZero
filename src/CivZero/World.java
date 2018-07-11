@@ -278,7 +278,4 @@ public class World
 	{
 		return players;
 	}
-	
-	
-
 }

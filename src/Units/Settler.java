@@ -13,9 +13,13 @@ public class Settler extends Unit
 	@Override
 	public boolean special()
 	{
-		w.foundCity(player, x, y);
-		w.removeUnit(this);
-		return true;
+		if (w.foundCity(player, x, y))
+		{
+			w.removeUnit(this);
+			System.out.println(player.getPlayerName() + " founded city at " + x + ", " + y);
+			return true;
+		}
+		return false;
 	}
 
 	@Override

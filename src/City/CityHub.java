@@ -14,10 +14,14 @@ import javax.imageio.ImageIO;
 
 import Buildings.Buildable;
 import Buildings.Building;
+import Buildings.Grainery;
+import Buildings.Monument;
 import CivZero.World;
 import Player.Player;
 import Tiles.Tile;
 import Tiles.Yields;
+import Units.Scout;
+import Units.Settler;
 
 /**
  * @author Austin Cheng
@@ -36,7 +40,6 @@ public class CityHub
 	Tile cityCenter;
 	Yields cityTotals;
 	Yields temp;
-	ArrayList<Buildable> canBuild = new ArrayList<Buildable>();
 	ArrayList<Building> buildings = new ArrayList<Building>();
 	ArrayList<Tile> territory = new ArrayList<Tile>();
 	ArrayList<Point> assignment = new ArrayList<Point>();
@@ -59,7 +62,7 @@ public class CityHub
 		cityCenter = w.getWorld()[xLoc][yLoc];
 		PM = new PopulationManager(this);
 	}
-
+	
 	/**
 	 * Loads the image for the resource
 	 * 
@@ -288,7 +291,7 @@ public class CityHub
 
 	public void clickOn()
 	{
-		
+		owner.setActiveCity(this);
 	}
 
 	public void drawBuildables(Graphics g)
